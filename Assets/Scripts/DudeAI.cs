@@ -33,5 +33,16 @@ public class DudeAI : MonoBehaviour
         var diff = dude.body.position.x - homePos;
         if(diff > 1f) dude.Move(-1f);
         if(diff < -1f) dude.Move(1f);
+
+        FollowBall();
+    }
+
+    private void FollowBall()
+    {
+        var diff = dude.body.position.x - ball.position.x;
+        if (diff > 1f && diff < 5f)
+        {
+            dude.Move(-Mathf.Sign(diff));
+        }
     }
 }

@@ -1502,6 +1502,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: {fileID: 1784917355}
+--- !u!4 &1791205315 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6409087943301853528, guid: 35acee41c43fe4603a20f91bac272c40, type: 3}
+  m_PrefabInstance: {fileID: 6409087945008836251}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1797260668
 GameObject:
   m_ObjectHideFlags: 0
@@ -1684,6 +1689,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2388075316238463402, guid: 35acee41c43fe4603a20f91bac272c40, type: 3}
+      propertyPath: ball
+      value: 
+      objectReference: {fileID: 1351139099}
+    - target: {fileID: 2388075316238463402, guid: 35acee41c43fe4603a20f91bac272c40, type: 3}
+      propertyPath: dude
+      value: 
+      objectReference: {fileID: 1989344974}
+    - target: {fileID: 2388075316238463402, guid: 35acee41c43fe4603a20f91bac272c40, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2388075316238463402, guid: 35acee41c43fe4603a20f91bac272c40, type: 3}
+      propertyPath: checkPoint
+      value: 
+      objectReference: {fileID: 1892963018}
+    - target: {fileID: 2388075316238463402, guid: 35acee41c43fe4603a20f91bac272c40, type: 3}
+      propertyPath: ballMask.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
     - target: {fileID: 6409087944074469793, guid: 35acee41c43fe4603a20f91bac272c40, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -1756,8 +1781,17 @@ PrefabInstance:
       propertyPath: right
       value: 275
       objectReference: {fileID: 0}
+    - target: {fileID: 6409087944074469799, guid: 35acee41c43fe4603a20f91bac272c40, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 35acee41c43fe4603a20f91bac272c40, type: 3}
+--- !u!4 &1892963018 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6409087943301853528, guid: 35acee41c43fe4603a20f91bac272c40, type: 3}
+  m_PrefabInstance: {fileID: 1876271814}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1904076105
 GameObject:
   m_ObjectHideFlags: 0
@@ -2058,6 +2092,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd725cdab644c4a6888399d112600eda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1989344974 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6409087944074469798, guid: 35acee41c43fe4603a20f91bac272c40, type: 3}
+  m_PrefabInstance: {fileID: 1876271814}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd725cdab644c4a6888399d112600eda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6409087945008836251
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2065,6 +2110,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2388075316238463402, guid: 35acee41c43fe4603a20f91bac272c40, type: 3}
+      propertyPath: ball
+      value: 
+      objectReference: {fileID: 1351139099}
+    - target: {fileID: 2388075316238463402, guid: 35acee41c43fe4603a20f91bac272c40, type: 3}
+      propertyPath: dude
+      value: 
+      objectReference: {fileID: 951144253}
+    - target: {fileID: 2388075316238463402, guid: 35acee41c43fe4603a20f91bac272c40, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2388075316238463402, guid: 35acee41c43fe4603a20f91bac272c40, type: 3}
+      propertyPath: checkPoint
+      value: 
+      objectReference: {fileID: 1791205315}
+    - target: {fileID: 2388075316238463402, guid: 35acee41c43fe4603a20f91bac272c40, type: 3}
+      propertyPath: ballMask.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
     - target: {fileID: 6409087944074469793, guid: 35acee41c43fe4603a20f91bac272c40, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -2136,6 +2201,10 @@ PrefabInstance:
     - target: {fileID: 6409087944074469799, guid: 35acee41c43fe4603a20f91bac272c40, type: 3}
       propertyPath: right
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6409087944074469799, guid: 35acee41c43fe4603a20f91bac272c40, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 35acee41c43fe4603a20f91bac272c40, type: 3}
