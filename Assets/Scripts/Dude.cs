@@ -21,7 +21,7 @@ public class Dude : MonoBehaviour
         stats = new Stats();
         face.lookTarget = ball;
 
-        for (var i = 0; i < 5; i++)
+        for (var i = 0; i < 7; i++)
         {
             stats.AddRandom();
         }
