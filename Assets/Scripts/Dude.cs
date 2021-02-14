@@ -54,7 +54,7 @@ public class Dude : MonoBehaviour
 
 public enum Stat
 {
-    Test,
+    Dummy,
     Height,
     ArmLength,
     Strength,
