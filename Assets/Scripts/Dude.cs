@@ -72,7 +72,6 @@ public class Dude : MonoBehaviour
 
 public enum Stat
 {
-    Dummy,
     Height,
     ArmLength,
     Strength,

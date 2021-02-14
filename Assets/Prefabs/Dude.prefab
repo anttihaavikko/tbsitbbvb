@@ -752,7 +752,7 @@ MonoBehaviour:
   mouthRange: {x: 0.1, y: 0.1, z: 1}
   browRange: 0.05
   lookTarget: {fileID: 0}
-  lookSpeed: 2
+  lookSpeed: 1
   emoteSpeed: 0.05
   mouthSprite: {fileID: 7134925249401445211}
   mouthAngry: {fileID: 21300000, guid: dcf11062bb45f4ea2b3dadfa886218d3, type: 3}
@@ -1811,7 +1811,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7879403558896744313}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.03, y: -0.2058, z: 0}
+  m_LocalPosition: {x: 0, y: -0.2058, z: 0}
   m_LocalScale: {x: 1.7, y: 0.19813477, z: 1}
   m_Children:
   - {fileID: 1232987455668135204}
@@ -1895,7 +1895,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8137700409537283479}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.03, y: 0.098, z: 0}
+  m_LocalPosition: {x: 0, y: 0.098, z: 0}
   m_LocalScale: {x: 1.7, y: 0.34645, z: 1}
   m_Children:
   - {fileID: 1211673329991397814}
