@@ -17,7 +17,7 @@ public class Dude : MonoBehaviour
         stats = new Stats();
         face.lookTarget = ball;
 
-        for (var i = 0; i < 10; i++)
+        for (var i = 0; i < 5; i++)
         {
             stats.AddRandom();
         }
@@ -88,7 +88,7 @@ public class Stats
     {
         var s = (int) stat;
         var value = data[s];
-        var mod = value * Mathf.Pow(0.9f, value);
+        var mod = Mathf.Pow(0.99f, value);
         // Debug.Log("Applying decay: " + s + " => " + mod);
         return 1f + 0.1f * mod * value;
     }
