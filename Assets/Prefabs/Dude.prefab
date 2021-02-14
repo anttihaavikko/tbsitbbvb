@@ -1316,6 +1316,23 @@ MonoBehaviour:
   face: {fileID: 6293736441044786445}
   ball: {fileID: 0}
   bodyVisual: {fileID: 1697689161283972449}
+  shadowColor: {r: 0.7821734, g: 0.8541426, b: 0.8773585, a: 1}
+  skinSprites:
+  - {fileID: 6084156073016321724}
+  - {fileID: 2358656793386945464}
+  - {fileID: 8731843651357828705}
+  skinDarkSprites:
+  - {fileID: 6409087943334053754}
+  - {fileID: 6409087945073310518}
+  - {fileID: 6409087943472511705}
+  shirtSprites:
+  - {fileID: 4578449887499954951}
+  shirtDarkSprites:
+  - {fileID: 8555378245451887036}
+  pantsSprites:
+  - {fileID: 5956963547296476792}
+  pantsDarkSprites:
+  - {fileID: 3214778019797523670}
 --- !u!114 &6409087944074469799
 MonoBehaviour:
   m_ObjectHideFlags: 0

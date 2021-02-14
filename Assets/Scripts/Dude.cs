@@ -9,6 +9,10 @@ public class Dude : MonoBehaviour
     public Face face;
     public Transform ball;
     public Transform bodyVisual;
+    public Color shadowColor;
+    public List<SpriteRenderer> skinSprites, skinDarkSprites;
+    public List<SpriteRenderer> shirtSprites, shirtDarkSprites;
+    public List<SpriteRenderer> pantsSprites, pantsDarkSprites;
 
     private Stats stats;
 
@@ -24,6 +28,20 @@ public class Dude : MonoBehaviour
 
         UpdateVisuals();
         stats.PrintStats();
+        Colorize();
+    }
+
+    private void Colorize()
+    {
+        var skinColor = Color.HSVToRGB(Random.value, 0.25f, 1f);
+        var c1 = Color.HSVToRGB(Random.value, 0.25f, 1f);
+        var c2 = Color.HSVToRGB(Random.value, 0.25f, 1f);
+        skinSprites.ForEach(s => s.color = skinColor);
+        skinDarkSprites.ForEach(s => s.color = skinColor * shadowColor);
+        shirtSprites.ForEach(s => s.color = c1);
+        shirtDarkSprites.ForEach(s => s.color = c1 * shadowColor);
+        pantsSprites.ForEach(s => s.color = c2);
+        pantsDarkSprites.ForEach(s => s.color = c2 * shadowColor);
     }
 
     private void UpdateVisuals()
