@@ -871,7 +871,7 @@ GameObject:
   - component: {fileID: 6409087943301853534}
   m_Layer: 0
   m_Name: Arm
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -945,7 +945,7 @@ GameObject:
   - component: {fileID: 6409087943334053753}
   m_Layer: 0
   m_Name: Arm
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
