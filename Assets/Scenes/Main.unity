@@ -574,6 +574,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Opponent Two
       objectReference: {fileID: 0}
+    - target: {fileID: 6409087944074469794, guid: 35acee41c43fe4603a20f91bac272c40, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6409087944074469798, guid: 35acee41c43fe4603a20f91bac272c40, type: 3}
       propertyPath: ball
       value: 
@@ -666,7 +670,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3df7159fe2f444c298ba6f12cdc6cbbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  starter: {fileID: 1938181629}
+  dudes:
+  - {fileID: 1938181629}
+  - {fileID: 941096398}
   ball: {fileID: 1351139099}
   scoreDisplay: {fileID: 1784917358}
   playerMulti: 0
@@ -5706,6 +5712,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Opponent One
       objectReference: {fileID: 0}
+    - target: {fileID: 6409087944074469794, guid: 35acee41c43fe4603a20f91bac272c40, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6409087944074469798, guid: 35acee41c43fe4603a20f91bac272c40, type: 3}
       propertyPath: ball
       value: 
@@ -5754,7 +5764,7 @@ GameObject:
   - component: {fileID: 1351139099}
   m_Layer: 6
   m_Name: Ball
-  m_TagString: Untagged
+  m_TagString: Ball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6095,7 +6105,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3df7159fe2f444c298ba6f12cdc6cbbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  starter: {fileID: 951144253}
+  dudes:
+  - {fileID: 951144253}
+  - {fileID: 1989344974}
   ball: {fileID: 1351139099}
   scoreDisplay: {fileID: 1784917358}
   playerMulti: 1
@@ -6624,7 +6636,7 @@ PrefabInstance:
       objectReference: {fileID: 1989344974}
     - target: {fileID: 2388075316238463402, guid: 35acee41c43fe4603a20f91bac272c40, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2388075316238463402, guid: 35acee41c43fe4603a20f91bac272c40, type: 3}
       propertyPath: checkPoint
@@ -6682,6 +6694,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dude Two
       objectReference: {fileID: 0}
+    - target: {fileID: 6409087944074469794, guid: 35acee41c43fe4603a20f91bac272c40, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 6409087944074469798, guid: 35acee41c43fe4603a20f91bac272c40, type: 3}
       propertyPath: ball
       value: 
@@ -6708,7 +6724,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6409087944074469799, guid: 35acee41c43fe4603a20f91bac272c40, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 35acee41c43fe4603a20f91bac272c40, type: 3}
@@ -7062,7 +7078,7 @@ PrefabInstance:
       objectReference: {fileID: 951144253}
     - target: {fileID: 2388075316238463402, guid: 35acee41c43fe4603a20f91bac272c40, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2388075316238463402, guid: 35acee41c43fe4603a20f91bac272c40, type: 3}
       propertyPath: checkPoint
@@ -7120,6 +7136,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dude One
       objectReference: {fileID: 0}
+    - target: {fileID: 6409087944074469794, guid: 35acee41c43fe4603a20f91bac272c40, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 6409087944074469798, guid: 35acee41c43fe4603a20f91bac272c40, type: 3}
       propertyPath: ball
       value: 
@@ -7146,7 +7166,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6409087944074469799, guid: 35acee41c43fe4603a20f91bac272c40, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 35acee41c43fe4603a20f91bac272c40, type: 3}

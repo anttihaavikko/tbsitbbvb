@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Dude : MonoBehaviour
 {
@@ -16,8 +18,9 @@ public class Dude : MonoBehaviour
     public Transform groundCheck;
 
     private Stats stats;
+    private Vector2 startBodyPos, startArmPos;
 
-    private void Start()
+    private void Awake()
     {
         stats = new Stats();
         face.lookTarget = ball;
@@ -28,8 +31,14 @@ public class Dude : MonoBehaviour
         }
 
         UpdateVisuals();
-        stats.PrintStats();
+        // stats.PrintStats();
         Colorize();
+    }
+
+    private void Start()
+    {
+        startBodyPos = body.position;
+        startArmPos = arm.position;
     }
 
     private void Colorize()
@@ -76,6 +85,12 @@ public class Dude : MonoBehaviour
     public float GetStat(Stat stat)
     {
         return stats.Get(stat);
+    }
+
+    public void ReturnHome()
+    {
+        body.position = startBodyPos;
+        arm.position = startArmPos;
     }
 }
 
