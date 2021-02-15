@@ -1365,6 +1365,7 @@ MonoBehaviour:
   - {fileID: 5956963547296476792}
   pantsDarkSprites:
   - {fileID: 3214778019797523670}
+  groundCheck: {fileID: 6251299339096363779}
 --- !u!114 &6409087944074469799
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1624,6 +1625,7 @@ Transform:
   - {fileID: 1152496950126531374}
   - {fileID: 7304216561762371842}
   - {fileID: 1428825219152838420}
+  - {fileID: 6251299339096363779}
   m_Father: {fileID: 1697689161283972449}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1786,6 +1788,36 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &7853688834474087073
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6251299339096363779}
+  m_Layer: 0
+  m_Name: Ground Check
+  m_TagString: Untagged
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6251299339096363779
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7853688834474087073}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.63, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6409087945073310519}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7879403558896744313
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,6 +13,7 @@ public class Dude : MonoBehaviour
     public List<SpriteRenderer> skinSprites, skinDarkSprites;
     public List<SpriteRenderer> shirtSprites, shirtDarkSprites;
     public List<SpriteRenderer> pantsSprites, pantsDarkSprites;
+    public Transform groundCheck;
 
     private Stats stats;
 
@@ -58,6 +59,9 @@ public class Dude : MonoBehaviour
 
     public void Jump()
     {
+        if (!Physics2D.OverlapCircle(groundCheck.position, 0.01f)) return;
+        
+        body.velocity = new Vector2(body.velocity.x, 0f);
         body.AddForce(Vector2.up * (100f * stats.Get(Stat.Jump)), ForceMode2D.Impulse);
     }
 
