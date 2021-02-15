@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class DudeAI : MonoBehaviour
 {
@@ -22,26 +23,48 @@ public class DudeAI : MonoBehaviour
 
     private void Update()
     {
-        var dist = 1.5f * dude.GetStat(Stat.ArmLength);
-        var ballFound = Physics2D.OverlapCircle(checkPoint.position, dist, ballMask);
-        if (ballFound && swingCooldown <= 0f)
-        {
-            swingCooldown = 0.5f;
-            dude.Swing();
-        }
+        TrySwing();
 
         swingCooldown -= Time.deltaTime;
 
-        var diff = dude.body.position.x - homePos;
-        if(diff > 1f) dude.Move(-1f);
-        if(diff < -1f) dude.Move(1f);
+        MoveHome();
 
+        TryJump();
         FollowBall();
 
         if (IsStuck())
         {
             // ReSharper disable once Unity.PerformanceCriticalCodeInvocation
             Invoke(nameof(FixIfStuck), 0.5f);
+        }
+    }
+
+    private void MoveHome()
+    {
+        var diff = dude.body.position.x - homePos;
+        if (diff > 1f) dude.Move(-1f);
+        if (diff < -1f) dude.Move(1f);
+    }
+
+    private void TrySwing()
+    {
+        var dist = 1.5f * dude.GetStat(Stat.ArmLength);
+        var ballFound = Physics2D.OverlapCircle(checkPoint.position, dist, ballMask);
+        
+        if (!ballFound || !(swingCooldown <= 0f) || !(Random.value < 0.1f)) return;
+        
+        swingCooldown = 0.5f;
+        dude.Swing();
+    }
+
+    private void TryJump()
+    {
+        var diff = dude.body.position.x - ball.position.x;
+        var dist = Mathf.Abs(diff);
+        var ballFound = Physics2D.OverlapCircle(checkPoint.position, 10f, ballMask);
+        if (ballFound && ball.velocity.magnitude < 5f && dist < 2f && Random.value < 0.1f)
+        {
+            dude.Jump();
         }
     }
 
