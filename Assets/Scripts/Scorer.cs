@@ -11,7 +11,13 @@ public class Scorer : MonoBehaviour
     public int playerMulti, opponentMulti;
 
     private bool triggering;
-    
+    private ParticleSystem ballTrail;
+
+    private void Start()
+    {
+        ballTrail = ball.gameObject.GetComponentInChildren<ParticleSystem>();
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (triggering) return;
@@ -22,9 +28,16 @@ public class Scorer : MonoBehaviour
 
     private void NextRound()
     {
+        ballTrail.Stop();
         scoreDisplay.UpdateScores(playerMulti, opponentMulti);
         ball.position = new Vector2(starter.body.position.x, 5f);
         ball.velocity = Vector2.zero;
         triggering = false;
+        Invoke(nameof(ReactivateBallTrail), 0.2f);
+    }
+
+    private void ReactivateBallTrail()
+    {
+        ballTrail.Play();
     }
 }
