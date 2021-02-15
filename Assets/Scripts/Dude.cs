@@ -72,6 +72,11 @@ public class Dude : MonoBehaviour
         arm.AddForce(Vector2.right * 150f * direction * force, ForceMode2D.Impulse);
         body.AddForce(Vector2.left * 150f * direction * force, ForceMode2D.Impulse);
     }
+
+    public float GetStat(Stat stat)
+    {
+        return stats.Get(stat);
+    }
 }
 
 public enum Stat

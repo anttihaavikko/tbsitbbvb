@@ -6624,7 +6624,7 @@ PrefabInstance:
       objectReference: {fileID: 1989344974}
     - target: {fileID: 2388075316238463402, guid: 35acee41c43fe4603a20f91bac272c40, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2388075316238463402, guid: 35acee41c43fe4603a20f91bac272c40, type: 3}
       propertyPath: checkPoint
@@ -6708,7 +6708,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6409087944074469799, guid: 35acee41c43fe4603a20f91bac272c40, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 35acee41c43fe4603a20f91bac272c40, type: 3}
@@ -6728,6 +6728,7 @@ GameObject:
   - component: {fileID: 1904076107}
   - component: {fileID: 1904076106}
   - component: {fileID: 1904076108}
+  - component: {fileID: 1904076109}
   m_Layer: 0
   m_Name: Ball Indicator
   m_TagString: Untagged
@@ -6795,7 +6796,7 @@ Transform:
   m_GameObject: {fileID: 1904076105}
   m_LocalRotation: {x: 0, y: 0, z: 0.38268343, w: 0.92387956}
   m_LocalPosition: {x: 0, y: 3.22, z: 0}
-  m_LocalScale: {x: 0.31864, y: 0.31864, z: 0.31864}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 11
@@ -6815,6 +6816,22 @@ MonoBehaviour:
   ball: {fileID: 1351139102}
   limit: 5.5
   sprite: {fileID: 1904076106}
+--- !u!114 &1904076109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1904076105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee1ea07de56964f9cb7e77d0ef4b6f20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amount: 0.2
+  speed: 5
+  oneSided: 1
+  ratio: {x: 1, y: 1, z: 1}
 --- !u!1 &1905169949
 GameObject:
   m_ObjectHideFlags: 0
@@ -7045,7 +7062,7 @@ PrefabInstance:
       objectReference: {fileID: 951144253}
     - target: {fileID: 2388075316238463402, guid: 35acee41c43fe4603a20f91bac272c40, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2388075316238463402, guid: 35acee41c43fe4603a20f91bac272c40, type: 3}
       propertyPath: checkPoint
@@ -7129,7 +7146,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6409087944074469799, guid: 35acee41c43fe4603a20f91bac272c40, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 35acee41c43fe4603a20f91bac272c40, type: 3}

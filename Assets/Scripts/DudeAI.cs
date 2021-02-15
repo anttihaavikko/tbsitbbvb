@@ -12,16 +12,18 @@ public class DudeAI : MonoBehaviour
 
     private float swingCooldown;
     private float homePos;
+    private float armLength;
 
     private void Start()
     {
         homePos = dude.body.position.x;
+        armLength = dude.GetStat(Stat.ArmLength);
     }
 
     private void Update()
     {
-        // print("Ball velocity: " + ball.velocity.magnitude);
-        var ballFound = Physics2D.OverlapCircle(checkPoint.position, 2f, ballMask);
+        var dist = 1.5f * dude.GetStat(Stat.ArmLength);
+        var ballFound = Physics2D.OverlapCircle(checkPoint.position, dist, ballMask);
         if (ballFound && swingCooldown <= 0f)
         {
             swingCooldown = 0.5f;
@@ -35,6 +37,28 @@ public class DudeAI : MonoBehaviour
         if(diff < -1f) dude.Move(1f);
 
         FollowBall();
+
+        if (IsStuck())
+        {
+            // ReSharper disable once Unity.PerformanceCriticalCodeInvocation
+            Invoke(nameof(FixIfStuck), 0.5f);
+        }
+    }
+
+    private bool IsStuck()
+    {
+        var dist = 2f * dude.GetStat(Stat.ArmLength);
+        return ball.velocity.magnitude < 0.2f && ball.position.y > dude.body.position.y ? 
+            Physics2D.OverlapCircle(checkPoint.position, dist, ballMask) : 
+            false;
+    }
+
+    private void FixIfStuck()
+    {
+        if (IsStuck())
+        {
+            dude.Jump();
+        }
     }
 
     private void FollowBall()
