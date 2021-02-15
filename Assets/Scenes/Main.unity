@@ -6365,7 +6365,7 @@ MonoBehaviour:
   m_renderer: {fileID: 1784917356}
   m_maskType: 0
   _SortingLayerID: 0
-  _SortingOrder: -2
+  _SortingOrder: -3
 --- !u!23 &1784917356
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6405,7 +6405,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -2
+  m_SortingOrder: -3
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!224 &1784917357
 RectTransform:

@@ -16,6 +16,7 @@ public class Dude : MonoBehaviour
     public List<SpriteRenderer> shirtSprites, shirtDarkSprites;
     public List<SpriteRenderer> pantsSprites, pantsDarkSprites;
     public Transform groundCheck;
+    public List<Borderer> borders;
 
     private Stats stats;
     private Vector2 startBodyPos, startArmPos;
@@ -58,6 +59,8 @@ public class Dude : MonoBehaviour
     {
         arm.transform.localScale = new Vector3(1f, stats.Get(Stat.ArmLength), 1f);
         bodyVisual.localScale = new Vector3(1f, stats.Get(Stat.Height), 1f);
+        
+        borders.ForEach(b => b.Fix());
     }
 
     public void Move(float dir)
