@@ -54,7 +54,10 @@ public class Scorer : MonoBehaviour
     {
         EffectManager.Instance.AddEffect(0, ball.position);
         ballTrail.Stop();
-        scoreDisplay.UpdateScores(playerMulti, opponentMulti);
+        var ended = scoreDisplay.UpdateScores(playerMulti, opponentMulti);
+
+        if (ended) return;
+        
         var starter = dudes.OrderByDescending(d => Mathf.Abs(d.body.position.x)).First().body.position;
         var t = ball.transform;
         t.parent.position = new Vector2(starter.x, 5f);

@@ -51,7 +51,7 @@ public class DudeAI : MonoBehaviour
         var dist = 1.5f * dude.GetStat(Stat.ArmLength);
         var ballFound = Physics2D.OverlapCircle(checkPoint.position, dist, ballMask);
         
-        if (!ballFound || !(swingCooldown <= 0f) || !(Random.value < 0.1f)) return;
+        if (!ballFound || !(swingCooldown <= 0f)) return;
         
         swingCooldown = 0.5f;
         dude.Swing();
@@ -62,7 +62,7 @@ public class DudeAI : MonoBehaviour
         var diff = dude.body.position.x - ball.position.x;
         var dist = Mathf.Abs(diff);
         var ballFound = Physics2D.OverlapCircle(checkPoint.position, 10f, ballMask);
-        if (ballFound && ball.velocity.magnitude < 5f && dist < 2f)
+        if (ballFound && ball.velocity.magnitude < 5f && dist < 2f && Random.value < 0.1f)
         {
             dude.Jump();
         }

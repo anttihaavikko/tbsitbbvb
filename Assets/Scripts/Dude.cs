@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -18,9 +17,11 @@ public class Dude : MonoBehaviour
     public Transform groundCheck;
     public List<Borderer> borders;
     public Animator anim;
+    public BonusMenu bonusMenu;
 
     private Stats stats;
     private Vector2 startBodyPos, startArmPos;
+    private bool canMove = true;
 
     private void Awake()
     {
@@ -41,6 +42,14 @@ public class Dude : MonoBehaviour
     {
         startBodyPos = body.position;
         startArmPos = arm.position;
+    }
+
+    private void Update()
+    {
+        if (!canMove && bonusMenu)
+        {
+            bonusMenu.transform.position = body.position;
+        }
     }
 
     private void Colorize()
@@ -66,12 +75,16 @@ public class Dude : MonoBehaviour
 
     public void Move(float dir)
     {
+        if (!canMove) return;
+        
         var velocity = body.velocity;
         body.velocity = Vector2.MoveTowards(velocity, new Vector2(dir * 7f * stats.Get(Stat.Speed), velocity.y), 1f);
     }
 
     public void Jump()
     {
+        if (!canMove) return;
+        
         if (Mathf.Abs(body.velocity.y) > 0.5f) return;
         if (!Physics2D.OverlapCircle(groundCheck.position, 0.1f)) return;
         
@@ -84,6 +97,8 @@ public class Dude : MonoBehaviour
     // ReSharper disable Unity.PerformanceAnalysis
     public void Swing()
     {
+        if (!canMove) return;
+        
         // DisableAnimation();
         var force = stats.Get(Stat.Strength);
         arm.AddForce(Vector2.right * 150f * direction * force, ForceMode2D.Impulse);
@@ -111,6 +126,25 @@ public class Dude : MonoBehaviour
     {
         body.position = startBodyPos;
         arm.position = startArmPos;
+    }
+    
+    public void ShowMenu()
+    {
+        canMove = false;
+
+        if (bonusMenu)
+        {
+            bonusMenu.transform.position = body.position;
+            bonusMenu.gameObject.SetActive(true);
+
+            this.StartCoroutine(() => bonusMenu.Populate(this), 0.1f);
+        }
+    }
+
+    public void ApplyBonus(Bonus b, int multiplier = 1)
+    {
+        stats.Add(b.firstStat, b.firstAmount * multiplier);
+        UpdateVisuals();
     }
 }
 
@@ -163,5 +197,10 @@ public class Stats
             values.Add(System.Enum.GetName(typeof(Stat), stat) + ": " + Get(stat));
         }
         Debug.Log(string.Join(", ", values));
+    }
+
+    public static Stat GetRandom()
+    {
+        return (Stat) Random.Range(0, System.Enum.GetNames(typeof(Stat)).Length);
     }
 }
