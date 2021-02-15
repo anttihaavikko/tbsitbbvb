@@ -68,7 +68,8 @@ public class Dude : MonoBehaviour
 
     public void Jump()
     {
-        if (!Physics2D.OverlapCircle(groundCheck.position, 0.01f)) return;
+        if (Mathf.Abs(body.velocity.y) > 0.5f) return;
+        if (!Physics2D.OverlapCircle(groundCheck.position, 0.1f)) return;
         
         body.velocity = new Vector2(body.velocity.x, 0f);
         body.AddForce(Vector2.up * (100f * stats.Get(Stat.Jump)), ForceMode2D.Impulse);
