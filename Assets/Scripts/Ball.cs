@@ -19,11 +19,15 @@ public class Ball : MonoBehaviour
             
             if (other.gameObject.CompareTag("Hand") && mag > 20f && stopCooldown <= 0f && other.rigidbody.velocity.magnitude > 12f)
             {
-                Debug.Log("Total: " + other.relativeVelocity.magnitude + " Hand: " + other.rigidbody.velocity.magnitude);
-                Time.timeScale = 0f;
-                this.StartCoroutine(() => Time.timeScale = 1f, 1f/60f);
                 stopCooldown = 0.5f;
+                Time.timeScale = 0f;
+                this.StartCoroutine(() => Time.timeScale = 1f, 1f / 60f);
             }
+        }
+
+        if (mag > 10f)
+        {
+            EffectManager.Instance.AddEffect(0, other.contacts[0].point);
         }
     }
 
