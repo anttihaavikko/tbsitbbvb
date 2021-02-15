@@ -1,12 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 //using UnityEngine.Rendering.PostProcessing;
-using Cinemachine;
+// using Cinemachine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
-public class EffectCamera : MonoBehaviour {
+public class EffectCamera : MonoBehaviour
+{
+    public CinemachineVirtualCamera virtualCamera;
+
     private float cutoff = 1f, targetCutoff = 1f;
 	private float prevCutoff = 1f;
 	private float cutoffPos;
@@ -31,6 +35,7 @@ public class EffectCamera : MonoBehaviour {
     private LensDistortion ld;
     //private ColorSplit cs;
     private ColorAdjustments cg;
+    private float camOriginalY;
 
 	void Start() {
 
@@ -45,6 +50,8 @@ public class EffectCamera : MonoBehaviour {
         }
 
         originalPosition = transform.localPosition;
+
+        camOriginalY = virtualCamera.transform.position.y;
     }
 
 	void Update() {
@@ -76,8 +83,14 @@ public class EffectCamera : MonoBehaviour {
             shakeTime -= Time.deltaTime;
 
             var diff = new Vector3(Random.Range(-shakeAmount, shakeAmount) * mod, Random.Range(-shakeAmount, shakeAmount) * mod, 0);
-            transform.localPosition += diff * 0.02f;
-            transform.rotation = Quaternion.Euler(0, 0, Random.Range(-shakeAmount, shakeAmount) * mod);
+            
+            var rot = Quaternion.Euler(0, 0, Random.Range(-shakeAmount, shakeAmount) * mod * 1.5f);
+            var pos = virtualCamera.transform.position;
+            pos.y = camOriginalY;
+            virtualCamera.ForceCameraPosition(pos + diff * 0.075f, rot);
+            
+            // transform.localPosition += diff * 0.02f;
+            // transform.rotation = rot;
         }
         else
         {
@@ -121,12 +134,4 @@ public class EffectCamera : MonoBehaviour {
 
         //Time.timeScale = Mathf.Clamp(1f - 0.2f * mod, 0f, 1f);
     }
-}
-
-[System.Serializable]
-public class CameraRig
-{
-    public CinemachineVirtualCamera camera;
-    public Vector3 originalPosition;
-    public float amount;
 }
