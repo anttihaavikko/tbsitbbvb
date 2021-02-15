@@ -144,6 +144,10 @@ public class Dude : MonoBehaviour
     public void ApplyBonus(Bonus b, int multiplier = 1)
     {
         stats.Add(b.firstStat, b.firstAmount * multiplier);
+        if (b.secondAmount != 0)
+        {
+            stats.Add(b.secondStat, b.secondAmount * multiplier);
+        }
         UpdateVisuals();
     }
 }
