@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Linq;
 using UnityEngine;
 
@@ -20,6 +21,16 @@ public class Scorer : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D other)
+    {
+        Check(other);
+    }
+
+    // private void OnTriggerStay2D(Collider2D other)
+    // {
+    //     Check(other);
+    // }
+
+    private void Check(Component other)
     {
         if (triggering) return;
 
@@ -44,15 +55,18 @@ public class Scorer : MonoBehaviour
         EffectManager.Instance.AddEffect(0, ball.position);
         ballTrail.Stop();
         scoreDisplay.UpdateScores(playerMulti, opponentMulti);
-        var starter = dudes.OrderByDescending(d => Mathf.Abs(d.body.position.x)).First();
-        ball.position = new Vector2(starter.body.position.x, 5f);
+        var starter = dudes.OrderByDescending(d => Mathf.Abs(d.body.position.x)).First().body.position;
+        var t = ball.transform;
+        t.parent.position = new Vector2(starter.x, 5f);
+        t.localPosition = Vector3.zero;
+        ball.position = new Vector2(starter.x, 5f);
         ball.velocity = Vector2.zero;
-        triggering = false;
         Invoke(nameof(ReactivateBallTrail), 0.2f);
     }
 
     private void ReactivateBallTrail()
     {
         ballTrail.Play();
+        triggering = false;
     }
 }

@@ -62,7 +62,7 @@ public class DudeAI : MonoBehaviour
         var diff = dude.body.position.x - ball.position.x;
         var dist = Mathf.Abs(diff);
         var ballFound = Physics2D.OverlapCircle(checkPoint.position, 10f, ballMask);
-        if (ballFound && ball.velocity.magnitude < 5f && dist < 2f && Random.value < 0.1f)
+        if (ballFound && ball.velocity.magnitude < 5f && dist < 2f)
         {
             dude.Jump();
         }
@@ -86,7 +86,7 @@ public class DudeAI : MonoBehaviour
 
     private void FollowBall()
     {
-        const float correction = 0.5f;
+        const float correction = 0f;
         var diff = dude.body.position.x - ball.position.x - ball.velocity.x * correction;
         var dist = Mathf.Abs(diff);
         if (dist > 0.5f && dist < 4f)
