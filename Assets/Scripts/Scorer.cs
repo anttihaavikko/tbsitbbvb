@@ -41,6 +41,7 @@ public class Scorer : MonoBehaviour
 
     private void NextRound()
     {
+        EffectManager.Instance.AddEffect(0, ball.position);
         ballTrail.Stop();
         scoreDisplay.UpdateScores(playerMulti, opponentMulti);
         var starter = dudes.OrderByDescending(d => Mathf.Abs(d.body.position.x)).First();
