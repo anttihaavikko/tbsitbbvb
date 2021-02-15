@@ -33,8 +33,8 @@ public class DudeAI : MonoBehaviour
         swingCooldown -= Time.deltaTime;
 
         var diff = dude.body.position.x - homePos;
-        if(diff > 0.5f) dude.Move(-1f);
-        if(diff < -0.5f) dude.Move(1f);
+        if(diff > 1f) dude.Move(-1f);
+        if(diff < -1f) dude.Move(1f);
 
         FollowBall();
 
@@ -63,8 +63,10 @@ public class DudeAI : MonoBehaviour
 
     private void FollowBall()
     {
-        var diff = dude.body.position.x - ball.position.x;
-        if (diff > 1f && diff < 5f)
+        const float correction = 0.5f;
+        var diff = dude.body.position.x - ball.position.x - ball.velocity.x * correction;
+        var dist = Mathf.Abs(diff);
+        if (dist > 0.5f && dist < 4f)
         {
             dude.Move(-Mathf.Sign(diff));
         }
