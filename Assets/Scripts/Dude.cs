@@ -17,6 +17,7 @@ public class Dude : MonoBehaviour
     public List<SpriteRenderer> pantsSprites, pantsDarkSprites;
     public Transform groundCheck;
     public List<Borderer> borders;
+    public Animator anim;
 
     private Stats stats;
     private Vector2 startBodyPos, startArmPos;
@@ -74,6 +75,8 @@ public class Dude : MonoBehaviour
         if (Mathf.Abs(body.velocity.y) > 0.5f) return;
         if (!Physics2D.OverlapCircle(groundCheck.position, 0.1f)) return;
         
+        // DisableAnimation();
+        
         body.velocity = new Vector2(body.velocity.x, 0f);
         body.AddForce(Vector2.up * (100f * stats.Get(Stat.Jump)), ForceMode2D.Impulse);
     }
@@ -81,9 +84,22 @@ public class Dude : MonoBehaviour
     // ReSharper disable Unity.PerformanceAnalysis
     public void Swing()
     {
+        // DisableAnimation();
         var force = stats.Get(Stat.Strength);
         arm.AddForce(Vector2.right * 150f * direction * force, ForceMode2D.Impulse);
         body.AddForce(Vector2.left * 150f * direction * force, ForceMode2D.Impulse);
+    }
+
+    private void DisableAnimation()
+    {
+        anim.enabled = false;
+        CancelInvoke(nameof(ResumeAnimation));
+        Invoke(nameof(ResumeAnimation), 0.5f);
+    }
+
+    private void ResumeAnimation()
+    {
+        anim.enabled = true;
     }
 
     public float GetStat(Stat stat)

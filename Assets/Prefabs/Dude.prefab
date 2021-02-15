@@ -1401,6 +1401,7 @@ MonoBehaviour:
   - {fileID: 606322643391597419}
   - {fileID: 4879999566058051918}
   - {fileID: 590734497486922847}
+  anim: {fileID: 62859176761459750}
 --- !u!114 &6409087944074469799
 MonoBehaviour:
   m_ObjectHideFlags: 0
