@@ -24,6 +24,11 @@ public class Ball : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other)
     {
         var mag = other.relativeVelocity.magnitude;
+        
+        if ((other.gameObject.CompareTag("Ground") || other.gameObject.CompareTag("Net")) && mag > 7f)
+        {
+            EffectManager.Instance.AddEffect(1, other.contacts[0].point);
+        }
 
         if (!other.gameObject.CompareTag("Hand") && !other.gameObject.CompareTag("Net"))
         {
@@ -47,6 +52,11 @@ public class Ball : MonoBehaviour
             
             if (other.gameObject.CompareTag("Hand"))
             {
+                if (other.relativeVelocity.magnitude > 5f)
+                {
+                    EffectManager.Instance.AddEffect(2, other.contacts[0].point);
+                }
+                
                 var dude = other.gameObject.GetComponentInParent<Dude>();
 
                 if (mag > 20f && stopCooldown <= 0f && other.rigidbody.velocity.magnitude > 12f)

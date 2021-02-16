@@ -928,7 +928,7 @@ SpringJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 0
   m_Anchor: {x: 0, y: 1}
-  m_ConnectedAnchor: {x: -1.91, y: 1.99}
+  m_ConnectedAnchor: {x: -2.2853684, y: 2.6887085}
   m_AutoConfigureDistance: 0
   m_Distance: 1
   m_DampingRatio: 0
@@ -1406,6 +1406,7 @@ MonoBehaviour:
   serialized: 0
   armJoint: {fileID: 6409087944584176634}
   hand: {fileID: 6409087943334053755}
+  partner: {fileID: 0}
 --- !u!114 &6409087944074469799
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1579,6 +1580,7 @@ GameObject:
   - component: {fileID: 6409087944584176580}
   - component: {fileID: 6409087944584176635}
   - component: {fileID: 6409087944584176634}
+  - component: {fileID: 7025502651030256255}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -1647,6 +1649,19 @@ HingeJoint2D:
   m_AngleLimits:
     m_LowerAngle: -45
     m_UpperAngle: 45
+--- !u!114 &7025502651030256255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6409087944584176581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50c4cce422181467fb4e9af7c6442d0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  emitPoint: {fileID: 6251299339096363779}
 --- !u!1 &6409087945073310512
 GameObject:
   m_ObjectHideFlags: 0
