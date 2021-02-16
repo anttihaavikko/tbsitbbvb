@@ -21,6 +21,7 @@ public class Dude : MonoBehaviour
     public bool serialized;
     public HingeJoint2D armJoint;
     public Transform hand;
+    public Dude partner;
 
     private Stats stats;
     private Vector2 startBodyPos, startArmPos;
@@ -243,7 +244,8 @@ public enum Stat
     Spin,
     ArmStartAngle,
     ArmEndAngle,
-    Extras
+    Extras,
+    Super
 }
 
 [System.Serializable]

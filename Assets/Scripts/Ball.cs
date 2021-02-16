@@ -14,6 +14,7 @@ public class Ball : MonoBehaviour
 
     private float stopCooldown;
     private float homingAmount, homingDirection;
+    private Dude lastHit;
 
     private void Start()
     {
@@ -44,17 +45,25 @@ public class Ball : MonoBehaviour
             cam.BaseEffect(other.relativeVelocity.magnitude * 0.01f);
             EffectManager.Instance.AddEffect(0, body.position);
             
-            if (other.gameObject.CompareTag("Hand") && mag > 20f && stopCooldown <= 0f && other.rigidbody.velocity.magnitude > 12f)
+            if (other.gameObject.CompareTag("Hand"))
             {
-                stopCooldown = 0.5f;
-                Time.timeScale = 0f;
-                this.StartCoroutine(() => Time.timeScale = 1f, 1f / 60f);
-                
                 var dude = other.gameObject.GetComponentInParent<Dude>();
-                if (dude)
+
+                if (mag > 20f && stopCooldown <= 0f && other.rigidbody.velocity.magnitude > 12f)
                 {
-                    AddHoming(1f, dude.direction);
+                    stopCooldown = 0.5f;
+                    Time.timeScale = 0f;
+                    this.StartCoroutine(() => Time.timeScale = 1f, 1f / 60f);
+
+                    if (dude && dude.partner == lastHit)
+                    {
+                        AddHoming(dude.GetStat(Stat.Super), dude.direction);
+                    }
                 }
+
+                lastHit = dude;
+                CancelInvoke(nameof(ResetLastTouch));
+                Invoke(nameof(ResetLastTouch), 1.5f);
             }
         }
 
@@ -62,6 +71,11 @@ public class Ball : MonoBehaviour
         {
             EffectManager.Instance.AddEffect(0, other.contacts[0].point);
         }
+    }
+
+    private void ResetLastTouch()
+    {
+        lastHit = null;
     }
 
     private void Update()
@@ -75,7 +89,7 @@ public class Ball : MonoBehaviour
 
         if (homingAmount > 0f && SameSign(body.position.x, homingDirection))
         {
-            body.AddForce(Vector2.down * 10f, ForceMode2D.Force);
+            body.AddForce(Vector2.down * (5f * homingAmount), ForceMode2D.Force);
         }
         
         if (homingAmount > 0f && body.velocity.magnitude < 5f)
