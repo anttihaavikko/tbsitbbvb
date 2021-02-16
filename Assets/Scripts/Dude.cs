@@ -18,6 +18,7 @@ public class Dude : MonoBehaviour
     public List<Borderer> borders;
     public Animator anim;
     public BonusMenu bonusMenu;
+    public bool serialized; 
 
     private Stats stats;
     private Vector2 startBodyPos, startArmPos;
@@ -28,6 +29,8 @@ public class Dude : MonoBehaviour
         stats = new Stats();
         face.lookTarget = ball;
 
+        LoadStats();
+
         // for (var i = 0; i < 7; i++)
         // {
         //     stats.AddRandom();
@@ -36,6 +39,23 @@ public class Dude : MonoBehaviour
 
         UpdateVisuals();
         Colorize();
+    }
+
+    private void LoadStats()
+    {
+        var key = gameObject.name;
+        if (!serialized || !PlayerPrefs.HasKey(key)) return;
+        var data = PlayerPrefs.GetString(key);
+        Debug.Log("Loaded:" + data);
+        stats = JsonUtility.FromJson<Stats>(data);
+    }
+
+    public void SaveStats()
+    {
+        if (!serialized) return;
+        var data = JsonUtility.ToJson(stats);
+        Debug.Log("Saved:" + data);
+        PlayerPrefs.SetString(gameObject.name, data);
     }
 
     private void Start()
@@ -177,25 +197,25 @@ public enum Stat
 public class Stats
 {
     public int[] data;
-    public Stack<Triple> skin, shirt, pants;
+    public List<Triple> skin, shirt, pants;
 
     public Stats()
     {
         var statCount = System.Enum.GetNames(typeof(Stat)).Length;
         data = Enumerable.Repeat(1, statCount).ToArray();
-        skin = new Stack<Triple>();
-        shirt = new Stack<Triple>();
-        pants = new Stack<Triple>();
+        skin = new List<Triple>();
+        shirt = new List<Triple>();
+        pants = new List<Triple>();
     }
 
-    public Stack<Triple> GetColorList(BonusColor bc)
+    public List<Triple> GetColorList(BonusColor bc)
     {
         return bc switch
         {
             BonusColor.Top => skin,
             BonusColor.Middle => shirt,
             BonusColor.Bottom => pants,
-            _ => new Stack<Triple>()
+            _ => new List<Triple>()
         };
     }
 
@@ -219,12 +239,13 @@ public class Stats
     public void AddColor(BonusColor slot, Color color)
     {
         var list = GetColorList(slot);
-        list.Push(Triple.FromColor(color));
+        list.Add(Triple.FromColor(color));
     }
     
     public void PopColor(BonusColor slot)
     {
-        GetColorList(slot).Pop();
+        var list = GetColorList(slot);
+        list.RemoveAt(list.Count - 1);
     }
 
     public void Add(Stat stat, int amount)

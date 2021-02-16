@@ -9818,7 +9818,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6409087944074469794, guid: 35acee41c43fe4603a20f91bac272c40, type: 3}
       propertyPath: m_Name
-      value: Dude Two
+      value: PlayerLeft
       objectReference: {fileID: 0}
     - target: {fileID: 6409087944074469794, guid: 35acee41c43fe4603a20f91bac272c40, type: 3}
       propertyPath: m_Layer
@@ -9834,6 +9834,10 @@ PrefabInstance:
       objectReference: {fileID: 429503240}
     - target: {fileID: 6409087944074469798, guid: 35acee41c43fe4603a20f91bac272c40, type: 3}
       propertyPath: direction
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6409087944074469798, guid: 35acee41c43fe4603a20f91bac272c40, type: 3}
+      propertyPath: serialized
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6409087944074469799, guid: 35acee41c43fe4603a20f91bac272c40, type: 3}
@@ -10954,7 +10958,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6409087944074469794, guid: 35acee41c43fe4603a20f91bac272c40, type: 3}
       propertyPath: m_Name
-      value: Dude One
+      value: PlayerRight
       objectReference: {fileID: 0}
     - target: {fileID: 6409087944074469794, guid: 35acee41c43fe4603a20f91bac272c40, type: 3}
       propertyPath: m_Layer
@@ -10970,6 +10974,10 @@ PrefabInstance:
       objectReference: {fileID: 1547117197}
     - target: {fileID: 6409087944074469798, guid: 35acee41c43fe4603a20f91bac272c40, type: 3}
       propertyPath: direction
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6409087944074469798, guid: 35acee41c43fe4603a20f91bac272c40, type: 3}
+      propertyPath: serialized
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6409087944074469799, guid: 35acee41c43fe4603a20f91bac272c40, type: 3}

@@ -31,6 +31,8 @@ public class Match : MonoBehaviour
         
         menu1.Lock();
         menu2.Lock();
+        
+        dudes.ForEach(d => d.SaveStats());
     }
 
     private void UpdateMirroring()
