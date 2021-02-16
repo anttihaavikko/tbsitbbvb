@@ -18,6 +18,7 @@ public class BonusMenu : MonoBehaviour
     private int current;
     private bool selected;
     private Dude dude;
+    private bool locked;
 
     private void Start()
     {
@@ -55,6 +56,8 @@ public class BonusMenu : MonoBehaviour
 
     private void Update()
     {
+        if (locked) return;
+        
         if (Input.GetKeyDown(up))
         {
             SelectNext(-1);
@@ -122,6 +125,16 @@ public class BonusMenu : MonoBehaviour
     {
         var v = t.localScale;
         t.localScale = new Vector3(-1f * v.x, v.y, v.z);
+    }
+
+    public void Lock()
+    {
+        locked = true;
+    }
+
+    public bool Selected()
+    {
+        return selected;
     }
 }
 
