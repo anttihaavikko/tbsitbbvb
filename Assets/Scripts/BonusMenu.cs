@@ -40,8 +40,8 @@ public class BonusMenu : MonoBehaviour
                 firstAmount = Random.Range(1, 3),
                 secondStat = Stats.GetRandom(),
                 secondAmount = Random.Range(1, 3),
-                color = Color.red,
-                colorType = BonusColor.Top
+                color = Color.HSVToRGB(Random.value, 0.25f, 1f),
+                colorType = (BonusColor)Random.Range(0, 3)
             });
             
             bonuses.Add(bonus);

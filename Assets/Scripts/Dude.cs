@@ -28,13 +28,13 @@ public class Dude : MonoBehaviour
         stats = new Stats();
         face.lookTarget = ball;
 
-        for (var i = 0; i < 7; i++)
-        {
-            stats.AddRandom();
-        }
+        // for (var i = 0; i < 7; i++)
+        // {
+        //     stats.AddRandom();
+        //     stats.AddColor(BonusColor.Top, Color.HSVToRGB(Random.value, 0.25f, 1f));
+        // }
 
         UpdateVisuals();
-        // stats.PrintStats();
         Colorize();
     }
 
@@ -54,9 +54,9 @@ public class Dude : MonoBehaviour
 
     private void Colorize()
     {
-        var skinColor = Color.HSVToRGB(Random.value, 0.25f, 1f);
-        var c1 = Color.HSVToRGB(Random.value, 0.25f, 1f);
-        var c2 = Color.HSVToRGB(Random.value, 0.25f, 1f);
+        var skinColor = stats.GetColor(BonusColor.Top);
+        var c1 = stats.GetColor(BonusColor.Middle);
+        var c2 =stats.GetColor(BonusColor.Bottom);
         skinSprites.ForEach(s => s.color = skinColor);
         skinDarkSprites.ForEach(s => s.color = skinColor * shadowColor);
         shirtSprites.ForEach(s => s.color = c1);
@@ -148,7 +148,18 @@ public class Dude : MonoBehaviour
         {
             stats.Add(b.secondStat, b.secondAmount * multiplier);
         }
+
+        if (multiplier > 0)
+        {
+            stats.AddColor(b.colorType, b.color);
+        }
+        else
+        {
+            stats.PopColor(b.colorType);
+        }
+        
         UpdateVisuals();
+        Colorize();
     }
 }
 
@@ -162,14 +173,58 @@ public enum Stat
     Spin
 }
 
+[System.Serializable]
 public class Stats
 {
-    private readonly int[] data;
+    public int[] data;
+    public Stack<Triple> skin, shirt, pants;
 
     public Stats()
     {
         var statCount = System.Enum.GetNames(typeof(Stat)).Length;
         data = Enumerable.Repeat(1, statCount).ToArray();
+        skin = new Stack<Triple>();
+        shirt = new Stack<Triple>();
+        pants = new Stack<Triple>();
+    }
+
+    public Stack<Triple> GetColorList(BonusColor bc)
+    {
+        return bc switch
+        {
+            BonusColor.Top => skin,
+            BonusColor.Middle => shirt,
+            BonusColor.Bottom => pants,
+            _ => new Stack<Triple>()
+        };
+    }
+
+    public Color GetColor(BonusColor slot)
+    {
+        var list = GetColorList(slot);
+
+        if (!list.Any()) return Color.white;
+
+        var hue = 0f;
+        list.ToList().ForEach(triple =>
+        {
+            Color.RGBToHSV(triple.ToColor(), out var h, out _, out _);
+            hue += h;
+        });
+
+        hue /= list.Count;
+        return Color.HSVToRGB(hue, 0.25f, 1f);
+    }
+
+    public void AddColor(BonusColor slot, Color color)
+    {
+        var list = GetColorList(slot);
+        list.Push(Triple.FromColor(color));
+    }
+    
+    public void PopColor(BonusColor slot)
+    {
+        GetColorList(slot).Pop();
     }
 
     public void Add(Stat stat, int amount)
@@ -207,4 +262,42 @@ public class Stats
     {
         return (Stat) Random.Range(0, System.Enum.GetNames(typeof(Stat)).Length);
     }
+}
+
+[System.Serializable]
+public class Triple
+{
+    public Triple(float aa, float bb, float cc)
+    {
+        a = aa;
+        b = bb;
+        c = cc;
+    }
+
+    public static Triple FromVector(Vector3 vector)
+    {
+        return new Triple(vector.x, vector.y, vector.z);
+    }
+
+    public static Triple FromColor(Color color)
+    {
+        return new Triple(color.r, color.g, color.b);
+    }
+
+    public Vector3 ToVector3()
+    {
+        return new Vector3(a, b, c);
+    }
+
+    public Color ToColor()
+    {
+        return new Color(a, b, c);
+    }
+
+    public bool IsBlackish()
+    {
+        return a < 0.1f && b < 0.1f && c < 0.1f;
+    }
+
+    public float a, b, c;
 }
