@@ -56,6 +56,12 @@ public class Dude : MonoBehaviour
         PlayerPrefs.SetString(gameObject.name, data);
     }
 
+    public void ClearSave()
+    {
+        if (!serialized) return;
+        PlayerPrefs.DeleteKey(gameObject.name);
+    }
+
     private void Start()
     {
         startBodyPos = body.position;

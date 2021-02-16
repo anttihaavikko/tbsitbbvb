@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -102,6 +103,7 @@ public class BonusMenu : MonoBehaviour
 
     private void SelectNext(int direction)
     {
+        if (!bonuses.Any()) return;
         if (selected) Toggle();
         current = (current + direction + bonuses.Count) % bonuses.Count;
         FocusArrow();

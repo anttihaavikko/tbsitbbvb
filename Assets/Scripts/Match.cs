@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Match : MonoBehaviour
 {
@@ -18,8 +19,25 @@ public class Match : MonoBehaviour
 
     private void Update()
     {
+        DebugControls();
         UpdateMirroring();
         LockMenus();
+    }
+
+    private void DebugControls()
+    {
+        if (!Application.isEditor) return;
+        
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadSceneAsync("Main");
+        }
+            
+        if (Input.GetKeyDown(KeyCode.Alpha0))
+        {
+            dudes.ForEach(d => d.ClearSave());
+            SceneManager.LoadSceneAsync("Main");
+        }
     }
 
     private void LockMenus()
@@ -33,6 +51,8 @@ public class Match : MonoBehaviour
         menu2.Lock();
         
         dudes.ForEach(d => d.SaveStats());
+
+        this.StartCoroutine(() => SceneManager.LoadSceneAsync("Main"), 0.5f);
     }
 
     private void UpdateMirroring()

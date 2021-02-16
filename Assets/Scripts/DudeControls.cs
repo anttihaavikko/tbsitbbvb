@@ -20,10 +20,5 @@ public class DudeControls : MonoBehaviour
         if(Input.GetKeyDown(up)) dude.Jump();
         
         if(Input.GetKeyDown(down)) dude.Swing();
-
-        if (Application.isEditor && Input.GetKeyDown(KeyCode.R))
-        {
-            SceneManager.LoadSceneAsync("Main");
-        }
     }
 }
