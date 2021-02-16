@@ -14,6 +14,7 @@ public class BonusMenu : MonoBehaviour
     public KeyCode up, down;
     public KeyCode left, right;
     public Transform help;
+    public Appearer appearer;
 
     private List<BonusTile> bonuses;
     private int current;

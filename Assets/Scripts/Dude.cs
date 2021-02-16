@@ -164,13 +164,11 @@ public class Dude : MonoBehaviour
     {
         canMove = false;
 
-        if (bonusMenu)
-        {
-            bonusMenu.transform.position = body.position;
-            bonusMenu.gameObject.SetActive(true);
-
-            this.StartCoroutine(() => bonusMenu.Populate(this), 0.1f);
-        }
+        if (!bonusMenu) return;
+        
+        bonusMenu.transform.position = body.position;
+        bonusMenu.appearer.Show();
+        this.StartCoroutine(() => bonusMenu.Populate(this), 0.1f);
     }
 
     public void ApplyBonus(Bonus b, int multiplier = 1)

@@ -52,7 +52,13 @@ public class Match : MonoBehaviour
         
         dudes.ForEach(d => d.SaveStats());
 
-        this.StartCoroutine(() => SceneManager.LoadSceneAsync("Main"), 0.5f);
+        this.StartCoroutine(() =>
+        {
+            menu1.appearer.Hide();
+            menu2.appearer.Hide();
+        }, 0.5f);
+        
+        this.StartCoroutine(() => SceneManager.LoadSceneAsync("Main"), 1f);
     }
 
     private void UpdateMirroring()
