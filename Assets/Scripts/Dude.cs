@@ -300,15 +300,14 @@ public class Stats
 
         if (!list.Any()) return Color.white;
 
-        var hue = 0f;
+        var mix = Color.black;
         list.ToList().ForEach(triple =>
         {
-            Color.RGBToHSV(triple.ToColor(), out var h, out _, out _);
-            hue += h;
+            mix += triple.ToColor();
         });
 
-        hue /= list.Count;
-        return Color.HSVToRGB(hue, 0.25f, 1f);
+        mix /= list.Count;
+        return mix;
     }
 
     public void AddColor(BonusColor slot, Color color)
