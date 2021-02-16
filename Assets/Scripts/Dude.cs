@@ -46,7 +46,6 @@ public class Dude : MonoBehaviour
         var key = gameObject.name;
         if (!serialized || !PlayerPrefs.HasKey(key)) return;
         var data = PlayerPrefs.GetString(key);
-        Debug.Log("Loaded:" + data);
         stats = JsonUtility.FromJson<Stats>(data);
     }
 
@@ -54,7 +53,6 @@ public class Dude : MonoBehaviour
     {
         if (!serialized) return;
         var data = JsonUtility.ToJson(stats);
-        Debug.Log("Saved:" + data);
         PlayerPrefs.SetString(gameObject.name, data);
     }
 
