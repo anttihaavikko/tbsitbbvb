@@ -11,6 +11,13 @@ public class Match : MonoBehaviour
 
     private bool isMirrored;
 
+    private void Start()
+    {
+        var count = dudes[0].GetLevel();
+        dudes[2].AddBonuses(count);
+        dudes[3].AddBonuses(count);
+    }
+
     public void End()
     {
         bonusCam.SetActive(true);

@@ -30,12 +30,14 @@ public class BonusMenu : MonoBehaviour
     public void Populate(Dude d)
     {
         dude = d;
+
+        var amount = Mathf.Clamp(3 + dude.GetRawStat(Stat.Extras), 2, 6);
         
-        for (var i = 0; i < 3; i++)
+        for (var i = 0; i < amount; i++)
         {
             if (!doublePrefab) return;
 
-            var b = GetBonus();
+            var b = Bonus.GetRandom(dude);
             var bonus = Instantiate(b.secondAmount != 0 ? doublePrefab : singlePrefab, container);
             bonus.Setup(b);
             
@@ -47,41 +49,6 @@ public class BonusMenu : MonoBehaviour
         Canvas.ForceUpdateCanvases();
         container.gameObject.SetActive(false);
         container.gameObject.SetActive(true);
-    }
-
-    private Bonus GetBonus()
-    {
-        var first = 1;
-        var second = 0;
-        
-        if (Random.value < 0.2f)
-        {
-            first = 2;
-            second = 0;
-        }
-        
-        if (Random.value < 0.1f)
-        {
-            first = 1;
-            second = 1;
-        }
-
-        if (Random.value < 0.05f)
-        {
-            first = 3;
-            second = -1;
-        }
-        
-        var boon = Stats.GetRandom();
-        return new Bonus
-        {
-            firstStat = boon,
-            firstAmount = first,
-            secondStat = dude.GetBane(boon),
-            secondAmount = second,
-            color = Color.HSVToRGB(Random.value, 0.25f, 1f),
-            colorType = (BonusColor) Random.Range(0, 3)
-        };
     }
 
     private void Update()
@@ -177,6 +144,41 @@ public class Bonus
     public int firstAmount, secondAmount;
     public Color color;
     public BonusColor colorType;
+    
+    public static Bonus GetRandom(Dude dude)
+    {
+        var first = 1;
+        var second = 0;
+        
+        if (Random.value < 0.2f)
+        {
+            first = 2;
+            second = 0;
+        }
+        
+        if (Random.value < 0.1f)
+        {
+            first = 1;
+            second = 1;
+        }
+
+        if (Random.value < 0.05f)
+        {
+            first = 3;
+            second = -1;
+        }
+        
+        var boon = Stats.GetRandom();
+        return new Bonus
+        {
+            firstStat = boon,
+            firstAmount = first,
+            secondStat = dude.GetBane(boon),
+            secondAmount = second,
+            color = Color.HSVToRGB(Random.value, 0.25f, 1f),
+            colorType = (BonusColor) Random.Range(0, 3)
+        };
+    }
 }
 
 public enum BonusColor

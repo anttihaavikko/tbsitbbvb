@@ -46,8 +46,13 @@ public class Appearer : MonoBehaviour
         }
 
 		Tweener.Instance.ScaleTo(transform, Vector3.zero, 0.2f, 0f, TweenEasings.QuadraticEaseOut);
-		this.StartCoroutine(() => gameObject.SetActive(false), 0.3f);
+		Invoke(nameof(DisableObject), 0.3f);
 	}
+
+    private void DisableObject()
+    {
+	    gameObject.SetActive(false);
+    }
 
     public void HideWithDelay()
 	{

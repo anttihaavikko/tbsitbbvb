@@ -33,12 +33,6 @@ public class Dude : MonoBehaviour
 
         LoadStats();
 
-        // for (var i = 0; i < 7; i++)
-        // {
-        //     stats.AddRandom();
-        //     stats.AddColor(BonusColor.Top, Color.HSVToRGB(Random.value, 0.25f, 1f));
-        // }
-
         UpdateVisuals();
         Colorize();
     }
@@ -153,6 +147,11 @@ public class Dude : MonoBehaviour
     {
         return stats.Get(stat);
     }
+    
+    public int GetRawStat(Stat stat)
+    {
+        return stats.GetRaw(stat);
+    }
 
     public void ReturnHome()
     {
@@ -173,6 +172,8 @@ public class Dude : MonoBehaviour
 
     public void ApplyBonus(Bonus b, int multiplier = 1)
     {
+        stats.level += multiplier;
+        
         stats.Add(b.firstStat, b.firstAmount * multiplier);
         if (b.secondAmount != 0)
         {
@@ -206,6 +207,23 @@ public class Dude : MonoBehaviour
 
         return options[Random.Range(0, options.Count)];
     }
+
+    public int GetLevel()
+    {
+        return stats.level;
+    }
+
+    public void AddBonuses(int count)
+    {
+        for (var i = 0; i < count; i++)
+        {
+            var b = Bonus.GetRandom(this);
+            ApplyBonus(b);
+        }
+
+        UpdateVisuals();
+        Colorize();
+    }
 }
 
 public enum Stat
@@ -217,7 +235,8 @@ public enum Stat
     Speed,
     Spin,
     ArmStartAngle,
-    ArmEndAngle
+    ArmEndAngle,
+    Extras
 }
 
 [System.Serializable]
@@ -225,9 +244,11 @@ public class Stats
 {
     public int[] data;
     public List<Triple> skin, shirt, pants;
+    public int level;
 
     public Stats()
     {
+        level = 1;
         var statCount = System.Enum.GetNames(typeof(Stat)).Length;
         data = Enumerable.Repeat(0, statCount).ToArray();
         skin = new List<Triple>();
@@ -248,7 +269,8 @@ public class Stats
             Stat.Jump,
             Stat.Strength,
             Stat.ArmStartAngle,
-            Stat.ArmEndAngle
+            Stat.ArmEndAngle,
+            Stat.Extras
         };
 
         return list.Contains(stat);
