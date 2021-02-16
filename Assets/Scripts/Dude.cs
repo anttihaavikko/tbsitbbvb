@@ -35,6 +35,8 @@ public class Dude : MonoBehaviour
 
         UpdateVisuals();
         Colorize();
+
+        anim.speed = Random.Range(0.9f, 1.1f);
     }
 
     private void LoadStats()
@@ -223,6 +225,11 @@ public class Dude : MonoBehaviour
 
         UpdateVisuals();
         Colorize();
+    }
+
+    public Color GetColor()
+    {
+        return stats.GetColor(BonusColor.Top);
     }
 }
 

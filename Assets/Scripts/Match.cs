@@ -8,6 +8,8 @@ public class Match : MonoBehaviour
 {
     public List<Dude> dudes;
     public GameObject bonusCam;
+    public IntroSplash splash;
+    public GameObject ball, overviewCam;
 
     private bool isMirrored;
 
@@ -16,6 +18,18 @@ public class Match : MonoBehaviour
         var count = dudes[0].GetLevel();
         dudes[2].AddBonuses(count);
         dudes[3].AddBonuses(count);
+
+        splash.SetPlayerNames(dudes[0].GetColor(), dudes[1].GetColor());
+        splash.SetOpponentNames(dudes[3].GetColor(), dudes[2].GetColor());
+        splash.Show();
+        
+        Invoke(nameof(OnStart), 5f);
+    }
+
+    private void OnStart()
+    {
+        ball.SetActive(true);
+        overviewCam.SetActive(false);
     }
 
     public void End()
