@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -26,8 +27,9 @@ public class IntroSplash : MonoBehaviour
     public void SetOpponentNames(Color c1, Color c2)
     {
         var rand = new System.Random();
-        var name1 = Namer.GenerateName(rand);
-        var name2 = Namer.GenerateName(rand);
+        var textInfo = new CultureInfo("en-US", false).TextInfo;
+        var name1 = textInfo.ToTitleCase(Namer.GenerateName(rand).ToLower());
+        var name2 = textInfo.ToTitleCase(Namer.GenerateName(rand).ToLower());
         opponent.SetText("<color=#" + ColorUtility.ToHtmlStringRGB(c1) + ">" + name1 + "</color>" + " & " + "<color=#" + ColorUtility.ToHtmlStringRGB(c2) + ">" + name2 + "</color>");
     }
 

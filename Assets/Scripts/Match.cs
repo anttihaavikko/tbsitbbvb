@@ -10,6 +10,8 @@ public class Match : MonoBehaviour
     public GameObject bonusCam;
     public IntroSplash splash;
     public GameObject ball, overviewCam;
+    public Appearer infoAppearer;
+    public TextWithBackground infoText;
 
     private bool isMirrored;
     private bool changing;
@@ -33,10 +35,20 @@ public class Match : MonoBehaviour
         overviewCam.SetActive(false);
     }
 
-    public void End()
+    public void End(bool won)
     {
         overviewCam.SetActive(true);
-        Invoke(nameof(OnEnd), 2f);
+        
+        if (won)
+        {
+            ShowInfo("YOU WON!");
+            Invoke(nameof(OnEnd), 2f);    
+        }
+        else
+        {
+            ShowInfo("YOU LOST!");
+            Invoke(nameof(RestartScene), 3f);
+        }
     }
 
     private void OnEnd()
@@ -65,6 +77,11 @@ public class Match : MonoBehaviour
         {
             dudes.ForEach(d => d.ClearSave());
             RestartScene();
+        }
+
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            ShowInfo("JUST TESTING!");
         }
     }
 
@@ -106,5 +123,17 @@ public class Match : MonoBehaviour
         isMirrored = mirrored;
         dudes[0].bonusMenu.Mirror();
         dudes[1].bonusMenu.Mirror();
+    }
+
+    public void ShowInfo(string message)
+    {
+        infoText.SetText(message);
+        infoAppearer.Show();
+        Invoke(nameof(HideInfo), 2f);
+    }
+
+    private void HideInfo()
+    {
+        infoAppearer.Hide();
     }
 }

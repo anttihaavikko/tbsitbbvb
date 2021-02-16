@@ -8,6 +8,7 @@ public class Appearer : MonoBehaviour
 	public float appearAfter = -1f;
 	public float hideDelay;
     public bool silent;
+    public bool randomizeAngle;
 
     public TMP_Text text;
     private Vector3 size;
@@ -25,6 +26,11 @@ public class Appearer : MonoBehaviour
 
     public void Show()
     {
+	    if (randomizeAngle)
+	    {
+			transform.rotation = Quaternion.Euler(new Vector3(0, 0, Random.Range(-5f, 5f)));    
+	    }
+	    
         if(!silent)
         {
             // AudioManager.Instance.PlayEffectAt(16, Vector3.zero, 0.336f);

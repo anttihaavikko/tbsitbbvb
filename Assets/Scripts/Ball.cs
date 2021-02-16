@@ -9,12 +9,25 @@ public class Ball : MonoBehaviour
     public EffectCamera cam;
     public float effectLimit = 15f;
     public Rigidbody2D body;
+    public GameObject super;
+    public ParticleSystem superStars;
 
     private float stopCooldown;
+    private float homingAmount, homingDirection;
+
+    private void Start()
+    {
+        superStars.Stop();
+    }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
         var mag = other.relativeVelocity.magnitude;
+
+        if (!other.gameObject.CompareTag("Hand") && !other.gameObject.CompareTag("Net"))
+        {
+            ClearHoming();   
+        }
 
         if (mag > 3f)
         {
@@ -36,6 +49,12 @@ public class Ball : MonoBehaviour
                 stopCooldown = 0.5f;
                 Time.timeScale = 0f;
                 this.StartCoroutine(() => Time.timeScale = 1f, 1f / 60f);
+                
+                var dude = other.gameObject.GetComponentInParent<Dude>();
+                if (dude)
+                {
+                    AddHoming(1f, dude.direction);
+                }
             }
         }
 
@@ -53,5 +72,40 @@ public class Ball : MonoBehaviour
         stopCooldown -= Time.unscaledDeltaTime;
         parent.position = body.position;
         t.localPosition = Vector3.zero;
+
+        if (homingAmount > 0f && SameSign(body.position.x, homingDirection))
+        {
+            body.AddForce(Vector2.down * 10f, ForceMode2D.Force);
+        }
+        
+        if (homingAmount > 0f && body.velocity.magnitude < 5f)
+        {
+            ClearHoming();
+        }
+    }
+
+    private static bool SameSign(float num1, float num2)
+    {
+        return num1 < 0 == num2 < 0;
+    }
+
+    private void AddHoming(float amount, float direction)
+    {
+        homingAmount = amount;
+        homingDirection = direction;
+        super.SetActive(amount > 0f);
+        if (amount > 0f)
+        {
+            superStars.Play();
+        }
+        else
+        {
+            superStars.Stop();
+        }
+    }
+
+    private void ClearHoming()
+    {
+        AddHoming(0f, 0f);
     }
 }
