@@ -34,6 +34,12 @@ public class Match : MonoBehaviour
 
     public void End()
     {
+        overviewCam.SetActive(true);
+        Invoke(nameof(OnEnd), 2f);
+    }
+
+    private void OnEnd()
+    {
         bonusCam.SetActive(true);
         dudes.ForEach(d => d.ShowMenu());
     }
