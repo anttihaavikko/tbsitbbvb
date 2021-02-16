@@ -12,6 +12,7 @@ public class Match : MonoBehaviour
     public GameObject ball, overviewCam;
     public Appearer infoAppearer;
     public TextWithBackground infoText;
+    public DudeAI ai1, ai2;
 
     private bool isMirrored;
     private bool changing;
@@ -21,6 +22,9 @@ public class Match : MonoBehaviour
         var count = dudes[0].GetLevel();
         dudes[2].AddBonuses(count);
         dudes[3].AddBonuses(count);
+        
+        ai1.SetLevel(count);
+        ai2.SetLevel(count);
 
         splash.SetPlayerNames(dudes[0].GetColor(), dudes[1].GetColor());
         splash.SetOpponentNames(dudes[3].GetColor(), dudes[2].GetColor());

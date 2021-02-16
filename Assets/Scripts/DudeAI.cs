@@ -14,11 +14,18 @@ public class DudeAI : MonoBehaviour
     private float swingCooldown;
     private float homePos;
     private float armLength;
+    private float chance;
 
     private void Start()
     {
         homePos = dude.body.position.x;
         armLength = dude.GetStat(Stat.ArmLength);
+    }
+
+    public void SetLevel(int level)
+    {
+        chance = level * (level / 100f) * 5f;
+        // Debug.Log("AI action chance is now: " + chance);
     }
 
     private void Update()
@@ -51,7 +58,7 @@ public class DudeAI : MonoBehaviour
         var dist = 1.5f * dude.GetStat(Stat.ArmLength);
         var ballFound = Physics2D.OverlapCircle(checkPoint.position, dist, ballMask);
         
-        if (!ballFound || !(swingCooldown <= 0f)) return;
+        if (!ballFound || !(swingCooldown <= 0f) || Random.value > chance) return;
         
         swingCooldown = 0.5f;
         dude.Swing();
