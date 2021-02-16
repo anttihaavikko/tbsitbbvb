@@ -51,6 +51,7 @@ public class Ball : MonoBehaviour
 
                 if (mag > 20f && stopCooldown <= 0f && other.rigidbody.velocity.magnitude > 12f)
                 {
+                    body.angularVelocity = 500f * dude.GetStat(Stat.Spin) * dude.direction;
                     stopCooldown = 0.5f;
                     Time.timeScale = 0f;
                     this.StartCoroutine(() => Time.timeScale = 1f, 1f / 60f);
@@ -89,7 +90,7 @@ public class Ball : MonoBehaviour
 
         if (homingAmount > 0f && SameSign(body.position.x, homingDirection))
         {
-            body.AddForce(Vector2.down * (5f * homingAmount), ForceMode2D.Force);
+            body.AddForce(Vector2.down * (7f * homingAmount), ForceMode2D.Force);
         }
         
         if (homingAmount > 0f && body.velocity.magnitude < 5f)
