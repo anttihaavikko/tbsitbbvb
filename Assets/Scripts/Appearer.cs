@@ -45,8 +45,8 @@ public class Appearer : MonoBehaviour
             // AudioManager.Instance.PlayEffectAt(17, Vector3.zero, 0.329f);
         }
 
-		Tweener.Instance.ScaleTo(transform, Vector3.zero, 0.1f, 0f, TweenEasings.QuadraticEaseOut);
-		this.StartCoroutine(() => gameObject.SetActive(false), 0.2f);
+		Tweener.Instance.ScaleTo(transform, Vector3.zero, 0.2f, 0f, TweenEasings.QuadraticEaseOut);
+		this.StartCoroutine(() => gameObject.SetActive(false), 0.3f);
 	}
 
     public void HideWithDelay()
