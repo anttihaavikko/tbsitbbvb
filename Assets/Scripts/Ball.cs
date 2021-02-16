@@ -63,7 +63,7 @@ public class Ball : MonoBehaviour
 
                 lastHit = dude;
                 CancelInvoke(nameof(ResetLastTouch));
-                Invoke(nameof(ResetLastTouch), 1.5f);
+                Invoke(nameof(ResetLastTouch), dude.GetStat(Stat.Super));
             }
         }
 
