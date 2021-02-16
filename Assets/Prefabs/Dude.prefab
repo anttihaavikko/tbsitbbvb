@@ -869,6 +869,7 @@ GameObject:
   - component: {fileID: 6409087943301853528}
   - component: {fileID: 6409087943301853535}
   - component: {fileID: 6409087943301853534}
+  - component: {fileID: 8071123950533244519}
   m_Layer: 0
   m_Name: Arm
   m_TagString: Hand
@@ -932,6 +933,32 @@ SpringJoint2D:
   m_Distance: 1
   m_DampingRatio: 0
   m_Frequency: 1
+--- !u!61 &8071123950533244519
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6409087943301853529}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.00000020116568, y: 0.67734635}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.45247817, y: 2.3546922}
+  m_EdgeRadius: 0
 --- !u!1 &6409087943334053700
 GameObject:
   m_ObjectHideFlags: 0
@@ -942,7 +969,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6409087943334053755}
   - component: {fileID: 6409087943334053754}
-  - component: {fileID: 6409087943334053753}
   m_Layer: 0
   m_Name: Arm
   m_TagString: Hand
@@ -1017,32 +1043,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &6409087943334053753
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6409087943334053700}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!1 &6409087943472511707
 GameObject:
   m_ObjectHideFlags: 0
@@ -1405,6 +1405,7 @@ MonoBehaviour:
   bonusMenu: {fileID: 0}
   serialized: 0
   armJoint: {fileID: 6409087944584176634}
+  hand: {fileID: 6409087943334053755}
 --- !u!114 &6409087944074469799
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1459,7 +1460,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6409087944074469794}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 3ba594dd3714e4483b714318b4892c48, type: 2}
   m_CullingMode: 0

@@ -20,6 +20,7 @@ public class Dude : MonoBehaviour
     public BonusMenu bonusMenu;
     public bool serialized;
     public HingeJoint2D armJoint;
+    public Transform hand;
 
     private Stats stats;
     private Vector2 startBodyPos, startArmPos;
@@ -131,8 +132,9 @@ public class Dude : MonoBehaviour
         
         // DisableAnimation();
         var force = stats.Get(Stat.Strength);
-        arm.AddForce(Vector2.right * 150f * direction * force, ForceMode2D.Impulse);
-        body.AddForce(Vector2.left * 150f * direction * force, ForceMode2D.Impulse);
+        var right = hand.right;
+        arm.AddForce(right * 150f * direction * force, ForceMode2D.Impulse);
+        body.AddForce(right * -150f * direction * force, ForceMode2D.Impulse);
     }
 
     private void DisableAnimation()
