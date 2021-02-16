@@ -18,7 +18,8 @@ public class Dude : MonoBehaviour
     public List<Borderer> borders;
     public Animator anim;
     public BonusMenu bonusMenu;
-    public bool serialized; 
+    public bool serialized;
+    public HingeJoint2D armJoint;
 
     private Stats stats;
     private Vector2 startBodyPos, startArmPos;
@@ -95,6 +96,11 @@ public class Dude : MonoBehaviour
         bodyVisual.localScale = new Vector3(1f, stats.Get(Stat.Height), 1f);
         
         borders.ForEach(b => b.Fix());
+
+        var limits = armJoint.limits;
+        limits.min = -45f - 10f * stats.GetRaw(Stat.ArmEndAngle);
+        limits.max = 45f + 10f * stats.GetRaw(Stat.ArmStartAngle);
+        armJoint.limits = limits;
     }
 
     public void Move(float dir)
@@ -185,6 +191,21 @@ public class Dude : MonoBehaviour
         UpdateVisuals();
         Colorize();
     }
+
+    public Stat GetBane(Stat exclude)
+    {
+        var options = new List<Stat>();
+        for (var i = 0; i < Stats.Count(); i++)
+        {
+            var stat = (Stat) i;
+            if ((stats.GetRaw(stat) > 0 || Stats.HasNoLimit(stat)) && stat != exclude)
+            {
+                options.Add(stat);
+            }
+        }
+
+        return options[Random.Range(0, options.Count)];
+    }
 }
 
 public enum Stat
@@ -194,7 +215,9 @@ public enum Stat
     Strength,
     Jump,
     Speed,
-    Spin
+    Spin,
+    ArmStartAngle,
+    ArmEndAngle
 }
 
 [System.Serializable]
@@ -206,10 +229,29 @@ public class Stats
     public Stats()
     {
         var statCount = System.Enum.GetNames(typeof(Stat)).Length;
-        data = Enumerable.Repeat(1, statCount).ToArray();
+        data = Enumerable.Repeat(0, statCount).ToArray();
         skin = new List<Triple>();
         shirt = new List<Triple>();
         pants = new List<Triple>();
+    }
+
+    public static int Count()
+    {
+        return System.Enum.GetNames(typeof(Stat)).Length;
+    }
+
+    public static bool HasNoLimit(Stat stat)
+    {
+        var list = new[]
+        {
+            Stat.Speed,
+            Stat.Jump,
+            Stat.Strength,
+            Stat.ArmStartAngle,
+            Stat.ArmEndAngle
+        };
+
+        return list.Contains(stat);
     }
 
     public List<Triple> GetColorList(BonusColor bc)
@@ -268,8 +310,13 @@ public class Stats
         var s = (int) stat;
         var value = data[s];
         var mod = Mathf.Pow(0.99f, value);
-        // Debug.Log("Applying decay: " + s + " => " + mod);
         return 1f + 0.1f * mod * value;
+    }
+
+    public int GetRaw(Stat stat)
+    {
+        var s = (int) stat;
+        return data[s];
     }
 
     public void PrintStats()

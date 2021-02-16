@@ -1402,6 +1402,9 @@ MonoBehaviour:
   - {fileID: 4879999566058051918}
   - {fileID: 590734497486922847}
   anim: {fileID: 62859176761459750}
+  bonusMenu: {fileID: 0}
+  serialized: 0
+  armJoint: {fileID: 6409087944584176634}
 --- !u!114 &6409087944074469799
 MonoBehaviour:
   m_ObjectHideFlags: 0

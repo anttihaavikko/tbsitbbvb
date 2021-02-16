@@ -35,12 +35,13 @@ public class BonusMenu : MonoBehaviour
             if (!doublePrefab) return;
             
             var bonus = Instantiate(doublePrefab, container);
+            var boon = Stats.GetRandom();
             bonus.Setup(new Bonus
             {
-                firstStat = Stats.GetRandom(),
+                firstStat = boon,
                 firstAmount = Random.Range(1, 3),
-                secondStat = Stats.GetRandom(),
-                secondAmount = Random.Range(1, 3),
+                secondStat = dude.GetBane(boon),
+                secondAmount = -1,
                 color = Color.HSVToRGB(Random.value, 0.25f, 1f),
                 colorType = (BonusColor)Random.Range(0, 3)
             });
@@ -82,6 +83,8 @@ public class BonusMenu : MonoBehaviour
 
     private void Toggle()
     {
+        if (!bonuses.Any()) return;
+        
         if (selected)
         {
             dude.ApplyBonus(bonuses[current].GetBonus(), -1);
