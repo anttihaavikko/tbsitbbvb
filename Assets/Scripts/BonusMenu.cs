@@ -12,6 +12,7 @@ public class BonusMenu : MonoBehaviour
     public Transform container;
     public KeyCode up, down;
     public KeyCode left, right;
+    public Transform help;
 
     private List<BonusTile> bonuses;
     private int current;
@@ -108,6 +109,19 @@ public class BonusMenu : MonoBehaviour
         var p = selectionArrow.position;
         p.y = bonuses[current].transform.position.y;
         selectionArrow.position = p;
+    }
+
+    public void Mirror()
+    {
+        MirrorTransform(transform);
+        MirrorTransform(container);
+        MirrorTransform(help);
+    }
+
+    private static void MirrorTransform(Transform t)
+    {
+        var v = t.localScale;
+        t.localScale = new Vector3(-1f * v.x, v.y, v.z);
     }
 }
 
