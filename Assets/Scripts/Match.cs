@@ -12,6 +12,7 @@ public class Match : MonoBehaviour
     public GameObject ball, overviewCam;
 
     private bool isMirrored;
+    private bool changing;
 
     private void Start()
     {
@@ -57,13 +58,13 @@ public class Match : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.R))
         {
-            SceneManager.LoadSceneAsync("Main");
+            RestartScene();
         }
             
         if (Input.GetKeyDown(KeyCode.Alpha0))
         {
             dudes.ForEach(d => d.ClearSave());
-            SceneManager.LoadSceneAsync("Main");
+            RestartScene();
         }
     }
 
@@ -73,6 +74,9 @@ public class Match : MonoBehaviour
         var menu2 = dudes[1].bonusMenu;
         
         if (!menu1.Selected() || !menu2.Selected()) return;
+        if (changing) return;
+        
+        changing = true;
         
         menu1.Lock();
         menu2.Lock();
@@ -85,7 +89,12 @@ public class Match : MonoBehaviour
             menu2.appearer.Hide();
         }, 0.5f);
         
-        this.StartCoroutine(() => SceneManager.LoadSceneAsync("Main"), 1f);
+        Invoke(nameof(RestartScene), 1f);
+    }
+
+    private void RestartScene()
+    {
+        SceneChanger.Instance.ChangeScene("Main");
     }
 
     private void UpdateMirroring()
