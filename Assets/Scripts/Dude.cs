@@ -265,6 +265,27 @@ public class Stats
         pants = new List<Triple>();
     }
 
+    public static string GetName(Stat stat)
+    {
+        string[] names =
+        {
+            "Height",
+            "Arm length",
+            "Strength",
+            "Jump",
+            "Speed",
+            "Spin",
+            "Swing start",
+            "Follow Through",
+            "Extra picks",
+            "Super"
+        };
+
+        var i = (int) stat;
+
+        return i < names.Length ? names[i] : System.Enum.GetName(typeof(Stat), stat);
+    }
+
     public static int Count()
     {
         return System.Enum.GetNames(typeof(Stat)).Length;
@@ -355,7 +376,7 @@ public class Stats
         for (var i = 0; i < System.Enum.GetNames(typeof(Stat)).Length; i++)
         {
             var stat = (Stat) i;
-            values.Add(System.Enum.GetName(typeof(Stat), stat) + ": " + Get(stat));
+            values.Add(GetName(stat) + ": " + Get(stat));
         }
         Debug.Log(string.Join(", ", values));
     }

@@ -15,10 +15,10 @@ public class BonusTile : MonoBehaviour
     public void Setup(Bonus b)
     {
         bonus = b;
-        upperText.text = Enum.GetName(typeof(Stat), b.firstStat) + " " + GetSigned(b.firstAmount);
+        upperText.text = Stats.GetName(b.firstStat) + " " + GetSigned(b.firstAmount);
         if (b.secondAmount != 0)
         {
-            lowerText.text = Enum.GetName(typeof(Stat), b.secondStat) + " " + GetSigned(b.secondAmount);    
+            lowerText.text = Stats.GetName(b.secondStat) + " " + GetSigned(b.secondAmount);    
         }
 
         colors[(int)b.colorType].color = b.color;

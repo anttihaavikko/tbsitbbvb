@@ -83,6 +83,11 @@ public class Match : MonoBehaviour
         {
             ShowInfo("JUST TESTING!");
         }
+        
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            OnEnd();
+        }
     }
 
     private void LockMenus()
