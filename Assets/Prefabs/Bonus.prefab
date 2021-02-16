@@ -609,6 +609,8 @@ MonoBehaviour:
   - {fileID: 5936840873674529352}
   - {fileID: 5936840873877267414}
   dimmer: {fileID: 66553389}
+  red: {r: 0.7294118, g: 0, b: 0, a: 1}
+  green: {r: 0, g: 0.3529412, b: 0, a: 1}
 --- !u!1 &5936840872726980336
 GameObject:
   m_ObjectHideFlags: 0

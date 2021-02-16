@@ -1024,7 +1024,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectionArrow: {fileID: 1239239666}
-  singlePrefab: {fileID: 0}
+  singlePrefab: {fileID: 2065279580584179103, guid: fd5bd426971854e7591a956020092c8b, type: 3}
   doublePrefab: {fileID: 5936840872723469903, guid: 89ed8f2fcd96a494eaf98b2bc4a5cc3a, type: 3}
   container: {fileID: 534391882}
   up: 273
@@ -8747,7 +8747,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectionArrow: {fileID: 141308434}
-  singlePrefab: {fileID: 0}
+  singlePrefab: {fileID: 2065279580584179103, guid: fd5bd426971854e7591a956020092c8b, type: 3}
   doublePrefab: {fileID: 5936840872723469903, guid: 89ed8f2fcd96a494eaf98b2bc4a5cc3a, type: 3}
   container: {fileID: 804443262}
   up: 119

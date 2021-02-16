@@ -8,6 +8,7 @@ public class BonusTile : MonoBehaviour
     public TMPro.TMP_Text upperText, lowerText;
     public List<Image> colors;
     public GameObject dimmer;
+    public Color red, green;
 
     private Bonus bonus;
 
@@ -23,9 +24,10 @@ public class BonusTile : MonoBehaviour
         colors[(int)b.colorType].color = b.color;
     }
 
-    private static string GetSigned(int amount)
+    private string GetSigned(int amount)
     {
-        return (amount >= 0 ? "+" : "") + amount;
+        var color = amount > 0 ? ColorUtility.ToHtmlStringRGB(green) : ColorUtility.ToHtmlStringRGB(red);
+        return "<color=#" + color + ">" + (amount >= 0 ? "+" : "") + amount + "</color>";
     }
 
     public Bonus GetBonus()

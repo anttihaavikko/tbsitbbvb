@@ -33,18 +33,10 @@ public class BonusMenu : MonoBehaviour
         for (var i = 0; i < 3; i++)
         {
             if (!doublePrefab) return;
-            
-            var bonus = Instantiate(doublePrefab, container);
-            var boon = Stats.GetRandom();
-            bonus.Setup(new Bonus
-            {
-                firstStat = boon,
-                firstAmount = Random.Range(1, 3),
-                secondStat = dude.GetBane(boon),
-                secondAmount = -1,
-                color = Color.HSVToRGB(Random.value, 0.25f, 1f),
-                colorType = (BonusColor)Random.Range(0, 3)
-            });
+
+            var b = GetBonus();
+            var bonus = Instantiate(b.secondAmount != 0 ? doublePrefab : singlePrefab, container);
+            bonus.Setup(b);
             
             bonuses.Add(bonus);
         }
@@ -54,6 +46,41 @@ public class BonusMenu : MonoBehaviour
         Canvas.ForceUpdateCanvases();
         container.gameObject.SetActive(false);
         container.gameObject.SetActive(true);
+    }
+
+    private Bonus GetBonus()
+    {
+        var first = 1;
+        var second = 0;
+        
+        if (Random.value < 0.2f)
+        {
+            first = 2;
+            second = 0;
+        }
+        
+        if (Random.value < 0.1f)
+        {
+            first = 1;
+            second = 1;
+        }
+
+        if (Random.value < 0.05f)
+        {
+            first = 3;
+            second = -1;
+        }
+        
+        var boon = Stats.GetRandom();
+        return new Bonus
+        {
+            firstStat = boon,
+            firstAmount = first,
+            secondStat = dude.GetBane(boon),
+            secondAmount = second,
+            color = Color.HSVToRGB(Random.value, 0.25f, 1f),
+            colorType = (BonusColor) Random.Range(0, 3)
+        };
     }
 
     private void Update()
