@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -233,6 +234,15 @@ public class Dude : MonoBehaviour
     {
         return stats.GetColor(BonusColor.Top);
     }
+
+    public string GetTitle()
+    {
+        if (GetLevel() == 1) return "The Newbie";
+        
+        var s = stats.data.Select((x, i) => new KeyValuePair<int, int>(x, i))
+            .OrderByDescending(v => v.Value).ThenBy(_ => Random.value).First();
+        return Stats.GetTitle(s.Key);
+    }
 }
 
 public enum Stat
@@ -385,6 +395,27 @@ public class Stats
     public static Stat GetRandom()
     {
         return (Stat) Random.Range(0, System.Enum.GetNames(typeof(Stat)).Length);
+    }
+
+    public static string GetTitle(int i)
+    {
+        string[] titles =
+        {
+            "The Tall",
+            "The Claw",
+            "The Mighty",
+            "The Spring",
+            "The Nimble",
+            "The Cunning",
+            "The Brawler",
+            "The Sniper",
+            "The Patient",
+            "The Mystic"
+        };
+
+        var stat = (Stat) i;
+        
+        return i < titles.Length ? titles[i] : Enum.GetName(typeof(Stat), stat);
     }
 }
 

@@ -51,7 +51,7 @@ public class Match : MonoBehaviour
         else
         {
             ShowInfo("YOU LOST!");
-            Invoke(nameof(RestartScene), 3f);
+            Invoke(nameof(BackToMenu), 3f);
         }
     }
 
@@ -80,7 +80,7 @@ public class Match : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha0))
         {
             dudes.ForEach(d => d.ClearSave());
-            RestartScene();
+            BackToMenu();
         }
 
         if (Input.GetKeyDown(KeyCode.T))
@@ -91,6 +91,11 @@ public class Match : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.O))
         {
             OnEnd();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            BackToMenu();
         }
     }
 
@@ -115,12 +120,17 @@ public class Match : MonoBehaviour
             menu2.appearer.Hide();
         }, 0.5f);
         
-        Invoke(nameof(RestartScene), 1f);
+        Invoke(nameof(BackToMenu), 1f);
     }
 
     private void RestartScene()
     {
         SceneChanger.Instance.ChangeScene("Main");
+    }
+    
+    private void BackToMenu()
+    {
+        SceneChanger.Instance.ChangeScene("Menu");
     }
 
     private void UpdateMirroring()
