@@ -239,7 +239,7 @@ public class Dude : MonoBehaviour
     {
         if (GetLevel() == 1) return "The Newbie";
         
-        var s = stats.data.Select((x, i) => new KeyValuePair<int, int>(x, i))
+        var s = stats.data.Select((x, i) => new KeyValuePair<int, int>(i, x))
             .OrderByDescending(v => v.Value).ThenBy(_ => Random.value).First();
         return Stats.GetTitle(s.Key);
     }
