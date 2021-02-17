@@ -28,7 +28,7 @@ public class ChallengeTile : MonoBehaviour
         var s = textBg.transform.localScale;
         textBg.transform.localScale = new Vector3(0f, s.y, s.z);
         textBg.gameObject.SetActive(true);
-        this.StartCoroutine(() => AnimateIn(s), 1.7f);
+        this.StartCoroutine(() => AnimateIn(s), 2f + Random.Range(0f, 0.4f));
     }
 
     private void AnimateIn(Vector3 s)

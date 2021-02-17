@@ -15,7 +15,7 @@ public class Ball : MonoBehaviour
 
     private float stopCooldown;
     private float homingAmount, homingDirection;
-    private Dude lastHit;
+    private Dude lastHit, lastHitNoReset;
 
     private void Start()
     {
@@ -87,6 +87,7 @@ public class Ball : MonoBehaviour
                 }
 
                 lastHit = dude;
+                if (dude) lastHitNoReset = dude;
                 CancelInvoke(nameof(ResetLastTouch));
                 Invoke(nameof(ResetLastTouch), dude.GetStat(Stat.Super));
             }
@@ -150,6 +151,6 @@ public class Ball : MonoBehaviour
 
     public Dude LastToucher()
     {
-        return lastHit;
+        return lastHitNoReset;
     }
 }
