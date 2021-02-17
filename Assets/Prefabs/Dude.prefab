@@ -1477,7 +1477,7 @@ MonoBehaviour:
   face: {fileID: 6293736441044786445}
   ball: {fileID: 0}
   bodyVisual: {fileID: 1697689161283972449}
-  shadowColor: {r: 0.7821734, g: 0.8541426, b: 0.8773585, a: 1}
+  shadowColor: {r: 0.63919544, g: 0.73771805, b: 0.7924528, a: 1}
   skinSprites:
   - {fileID: 6084156073016321724}
   - {fileID: 2358656793386945464}
