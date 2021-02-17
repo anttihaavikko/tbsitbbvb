@@ -33,7 +33,7 @@ public class ChallengeTile : MonoBehaviour
 
     private void AnimateIn(Vector3 s)
     {
-        Tweener.Instance.ScaleTo(textBg.transform, s, 0.3f, 0, TweenEasings.BackEaseOut);
+        Tweener.Instance.ScaleTo(textBg.transform, s, 0.5f, 0, TweenEasings.BackEaseOut);
     }
 
     private void ActivateIfDone(int index, GameStats stats)

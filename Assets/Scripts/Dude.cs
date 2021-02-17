@@ -146,7 +146,10 @@ public class Dude : MonoBehaviour
 
     private void AddGhost()
     {
-        EffectManager.Instance.GetArmTrail(armTrailer, transform);
+        if (Mathf.Abs(arm.angularVelocity) > 500f)
+        {
+            EffectManager.Instance.GetArmTrail(armTrailer, transform);   
+        }
     }
 
     private void DisableAnimation()
