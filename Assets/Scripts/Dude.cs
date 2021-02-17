@@ -24,10 +24,12 @@ public class Dude : MonoBehaviour
     public HingeJoint2D armJoint;
     public Transform hand;
     public Dude partner;
+    public Transform armTrailer;
 
     private Stats stats;
     private Vector2 startBodyPos, startArmPos;
     private bool canMove = true;
+    private bool swinging;
 
     private void Awake()
     {
@@ -75,6 +77,9 @@ public class Dude : MonoBehaviour
         {
             bonusMenu.transform.position = body.position;
         }
+        
+        // ReSharper disable once Unity.PerformanceCriticalCodeInvocation
+        if(swinging) AddGhost();
     }
 
     private void Colorize()
@@ -128,12 +133,20 @@ public class Dude : MonoBehaviour
     public void Swing()
     {
         if (!canMove) return;
+
+        swinging = true;
+        this.StartCoroutine(() => swinging = false, 0.1f); 
         
         // DisableAnimation();
         var force = stats.Get(Stat.Strength);
         var right = hand.right;
         arm.AddForce(right * 150f * direction * force, ForceMode2D.Impulse);
         body.AddForce(right * -150f * direction * force, ForceMode2D.Impulse);
+    }
+
+    private void AddGhost()
+    {
+        EffectManager.Instance.GetArmTrail(armTrailer, transform);
     }
 
     private void DisableAnimation()

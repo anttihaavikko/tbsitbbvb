@@ -6,9 +6,11 @@ using UnityEngine;
 public class EffectManager : MonoBehaviour {
 
 	public AutoEnd[] effects;
+	public ArmTrail armTrailPrefab;
 
     [SerializeField]
     private Queue<AutoEnd>[] effectPool;
+    private Queue<ArmTrail> armTrailPool;
 
     // ==================
 
@@ -34,7 +36,9 @@ public class EffectManager : MonoBehaviour {
         {
             effectPool[i] = new Queue<AutoEnd>();
         }
-    }
+
+        armTrailPool = new Queue<ArmTrail>();
+	}
 
 	public GameObject AddEffect(int effect, Vector3 position, float angle = 0f) {
 		var e = Get(effect);
@@ -78,5 +82,33 @@ public class EffectManager : MonoBehaviour {
     {
         obj.gameObject.SetActive(false);
         effectPool[obj.Pool].Enqueue(obj);
+    }
+    
+    public ArmTrail GetArmTrail(Transform parent, Transform container)
+    {
+	    if (!armTrailPool.Any())
+		    AddArmTrails(1);
+
+	    var obj = armTrailPool.Dequeue();
+	    obj.gameObject.SetActive(true);
+	    obj.transform.parent = parent;
+	    obj.Show(container);
+
+	    return obj;
+    }
+
+    private void AddArmTrails(int count)
+    {
+	    for (var i = 0; i < count; i++)
+	    {
+		    var obj = Instantiate(armTrailPrefab);
+		    armTrailPool.Enqueue(obj);
+	    }
+    }
+
+    public void ReturnToPool(ArmTrail obj)
+    {
+	    obj.gameObject.SetActive(false);
+	    armTrailPool.Enqueue(obj);
     }
 }
