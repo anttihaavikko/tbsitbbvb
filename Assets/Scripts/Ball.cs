@@ -61,14 +61,14 @@ public class Ball : MonoBehaviour
 
                 if (mag > 20f && stopCooldown <= 0f && other.rigidbody.velocity.magnitude > 12f)
                 {
-                    body.angularVelocity = 500f * dude.GetStat(Stat.Spin) * dude.direction;
+                    body.angularVelocity = 500f * (0.5f + dude.GetRawStat(Stat.Spin) * 0.25f) * dude.direction;
                     stopCooldown = 0.5f;
                     Time.timeScale = 0f;
                     this.StartCoroutine(() => Time.timeScale = 1f, 1f / 60f);
 
                     if (dude && dude.partner == lastHit)
                     {
-                        AddHoming(dude.GetStat(Stat.Super), dude.direction);
+                        AddHoming(dude.GetRawStat(Stat.Super) * 1f, dude.direction);
                     }
                 }
 
