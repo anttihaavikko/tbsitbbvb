@@ -14,7 +14,7 @@ public class ChallengeTile : MonoBehaviour
     {
         var challenge = " - " + Challenge.Names[index];
         textBg.text = "<mark=#ffffff padding='30, 70, 10, 10'>" + challenge + "</mark>";
-        textBg.transform.Rotate(new Vector3(0, 0, Random.Range(-2f, 2f)));
+        textBg.transform.Rotate(new Vector3(0, 0, Random.Range(-4f, 4f)));
         textBg.gameObject.SetActive(false);
         textActual.text = challenge;
 
