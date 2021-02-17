@@ -26,7 +26,7 @@ public class Match : MonoBehaviour
         ai1.SetLevel(count);
         ai2.SetLevel(count);
 
-        splash.SetPlayerNames(dudes[0].GetColor(), dudes[1].GetColor());
+        splash.SetPlayerNames(dudes[0], dudes[1]);
         splash.SetOpponentNames(dudes[3].GetColor(), dudes[2].GetColor());
         splash.Show();
         

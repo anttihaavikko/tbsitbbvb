@@ -243,6 +243,17 @@ public class Dude : MonoBehaviour
             .OrderByDescending(v => v.Value).ThenBy(v => v.Key).First();
         return Stats.GetTitle(s.Key);
     }
+
+    public string GetName()
+    {
+        return stats.name;
+    }
+
+    public void SetName(string newName)
+    {
+        stats.name = newName;
+        SaveStats();
+    }
 }
 
 public enum Stat
@@ -265,6 +276,7 @@ public class Stats
     public int[] data;
     public List<Triple> skin, shirt, pants;
     public int level;
+    public string name;
 
     public Stats()
     {

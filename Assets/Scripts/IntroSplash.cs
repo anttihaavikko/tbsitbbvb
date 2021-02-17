@@ -17,19 +17,19 @@ public class IntroSplash : MonoBehaviour
         HideAndRotate(opponent.transform);
     }
     
-    public void SetPlayerNames(Color c1, Color c2)
+    public void SetPlayerNames(Dude d1, Dude d2)
     {
-        var name1 = "Jim";
-        var name2 = "Bob";
-        home.SetText("<color=#" + ColorUtility.ToHtmlStringRGB(c1) + ">" + name1 + "</color>" + " & " + "<color=#" + ColorUtility.ToHtmlStringRGB(c2) + ">" + name2 + "</color>");
+        var name1 = d1.GetName();
+        var name2 = d2.GetName();
+        home.SetText("<color=#" + ColorUtility.ToHtmlStringRGB(d1.GetColor()) + ">" + name1 + "</color>" + " & " + "<color=#" + ColorUtility.ToHtmlStringRGB(d2.GetColor()) + ">" + name2 + "</color>");
     }
 
     public void SetOpponentNames(Color c1, Color c2)
     {
         var rand = new System.Random();
         var textInfo = new CultureInfo("en-US", false).TextInfo;
-        var name1 = textInfo.ToTitleCase(Namer.GenerateName(rand).ToLower());
-        var name2 = textInfo.ToTitleCase(Namer.GenerateName(rand).ToLower());
+        var name1 = Namer.GenerateName(rand);
+        var name2 = Namer.GenerateName(rand);
         opponent.SetText("<color=#" + ColorUtility.ToHtmlStringRGB(c1) + ">" + name1 + "</color>" + " & " + "<color=#" + ColorUtility.ToHtmlStringRGB(c2) + ">" + name2 + "</color>");
     }
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 
 public static class Namer
@@ -71,7 +72,8 @@ public static class Namer
         }
 
         name = name.Length > 10 ? name.Substring(0, 10) : name;
-
-        return name.ToUpper();
+        
+        var textInfo = new CultureInfo("en-US", false).TextInfo;
+        return textInfo.ToTitleCase(name.ToLower());
     }
 }

@@ -7,10 +7,10 @@ public class DudeInfo : MonoBehaviour
 {
     public Dude dude;
     public TMP_Text nameText, titleText;
-    
-    void Start()
+
+    public void SetNames()
     {
-        var n = "Ugh";
+        var n = dude.GetName();
         var c = ColorUtility.ToHtmlStringRGB(dude.GetColor());
         nameText.text = "<color=#" + c + ">" + n + "</color>";
         titleText.text = dude.GetTitle();
