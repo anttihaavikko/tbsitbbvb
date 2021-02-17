@@ -98,7 +98,9 @@ public class Challenge
         "Win a 5+ min match",
         "Fault!", // 5
         "Hit a curve ball",
-        "Receive a special hit"
+        "Receive a special hit",
+        "Win under a minute",
+        "Win a flawless match"
     };
     
     public int index;

@@ -52,10 +52,20 @@ public class Match : MonoBehaviour
             {
                 gameStats.CompleteChallenge(3);
             }
+
+            if (total == 5)
+            {
+                gameStats.CompleteChallenge(9);
+            }
             
             if (matchTime >= 5 * 60f)
             {
                 gameStats.CompleteChallenge(4);
+            }
+            
+            if (matchTime < 60f)
+            {
+                gameStats.CompleteChallenge(8);
             }
             
             gameStats.GetData().wins++;
@@ -69,6 +79,8 @@ public class Match : MonoBehaviour
             ShowInfo("YOU LOST!");
             Invoke(nameof(BackToMenu), 3f);
         }
+        
+        Debug.Log("Match lasted for " + matchTime);
         
         gameStats.Save();
     }
