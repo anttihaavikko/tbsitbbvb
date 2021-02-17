@@ -67,6 +67,11 @@ public class Match : MonoBehaviour
             {
                 gameStats.CompleteChallenge(8);
             }
+
+            if (gameStats.WasSolo())
+            {
+                gameStats.CompleteChallenge(10);
+            }
             
             gameStats.GetData().wins++;
             ShowInfo("YOU WON!");

@@ -26,6 +26,11 @@ public class Ball : MonoBehaviour
     {
         var mag = other.relativeVelocity.magnitude;
         var dude = other.gameObject.GetComponentInParent<Dude>();
+
+        if (dude && dude.direction == 1)
+        {
+            gameStats.AddToucher(dude);
+        }
         
         if ((other.gameObject.CompareTag("Ground") || other.gameObject.CompareTag("Net")) && mag > 7f)
         {

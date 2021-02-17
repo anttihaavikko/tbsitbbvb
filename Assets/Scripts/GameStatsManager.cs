@@ -7,9 +7,12 @@ using UnityEngine;
 public class GameStatsManager : MonoBehaviour
 {
     private GameStats data;
+    private List<Dude> touchers;
 
     private void Awake()
     {
+        touchers = new List<Dude>();
+            
         data = new GameStats();
         Load();
     }
@@ -31,6 +34,16 @@ public class GameStatsManager : MonoBehaviour
     public void Clear()
     {
         PlayerPrefs.DeleteKey("GameStats");
+    }
+
+    public void AddToucher(Dude d)
+    {
+        if(!touchers.Contains(d)) touchers.Add(d);
+    }
+
+    public bool WasSolo()
+    {
+        return touchers.Count <= 1;
     }
 
     public GameStats GetData()
@@ -100,7 +113,8 @@ public class Challenge
         "Hit a curve ball",
         "Receive a special hit",
         "Win under two minutes",
-        "Win a flawless match"
+        "Win a flawless match",
+        "Win solo"
     };
     
     public int index;
