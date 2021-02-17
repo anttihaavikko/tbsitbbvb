@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class ChallengeTile : MonoBehaviour
 {
@@ -26,7 +28,12 @@ public class ChallengeTile : MonoBehaviour
         var s = textBg.transform.localScale;
         textBg.transform.localScale = new Vector3(0f, s.y, s.z);
         textBg.gameObject.SetActive(true);
-        Tweener.Instance.ScaleTo(textBg.transform, s, 0.3f, 1f, TweenEasings.BackEaseOut);
+        this.StartCoroutine(() => AnimateIn(s), 1.7f);
+    }
+
+    private void AnimateIn(Vector3 s)
+    {
+        Tweener.Instance.ScaleTo(textBg.transform, s, 0.3f, 0, TweenEasings.BackEaseOut);
     }
 
     private void ActivateIfDone(int index, GameStats stats)

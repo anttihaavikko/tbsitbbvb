@@ -202,6 +202,7 @@ GameObject:
   - component: {fileID: 109330793}
   - component: {fileID: 109330792}
   - component: {fileID: 109330794}
+  - component: {fileID: 109330795}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -293,6 +294,23 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &109330795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 109330790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66960746842b54c0f9ed680c321e963d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  appearAfter: -1
+  hideDelay: 0
+  silent: 0
+  randomizeAngle: 0
+  text: {fileID: 0}
 --- !u!1001 &148544236
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1999,6 +2017,7 @@ MonoBehaviour:
   gameStats: {fileID: 1546210634}
   challengeContainer: {fileID: 109330791}
   challengePrefab: {fileID: 3273723372174312157, guid: 7a5a5360ffa4d4bceb4c714871308ce4, type: 3}
+  todo: {fileID: 109330795}
 --- !u!1 &1190868241
 GameObject:
   m_ObjectHideFlags: 0

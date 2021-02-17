@@ -12,6 +12,7 @@ public class MainMenu : MonoBehaviour
     public GameStatsManager gameStats;
     public Transform challengeContainer;
     public ChallengeTile challengePrefab;
+    public Appearer todo;
     
     private bool starting;
 
@@ -36,6 +37,11 @@ public class MainMenu : MonoBehaviour
         {
             var c = Instantiate(challengePrefab, challengeContainer);
             c.SetText(i, data);
+        }
+        
+        if (data.wins + data.losses > 0)
+        {
+            this.StartCoroutine(() => todo.Show(), 1.5f);
         }
 
         MarkChallengesDone(data);
