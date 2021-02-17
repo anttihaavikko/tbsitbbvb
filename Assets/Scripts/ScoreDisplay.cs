@@ -29,7 +29,7 @@ public class ScoreDisplay : MonoBehaviour
 
         if (ended)
         {
-            match.End(playerScore > opponentScore);
+            match.End(playerScore > opponentScore, playerScore + opponentScore);
         }
 
         return ended;

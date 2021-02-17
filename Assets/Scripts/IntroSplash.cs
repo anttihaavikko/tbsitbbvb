@@ -56,4 +56,9 @@ public class IntroSplash : MonoBehaviour
         t.localScale = Vector3.zero;
         t.Rotate(new Vector3(0, 0, Random.Range(-5f, 5f)));
     }
+
+    public void SetHeading(string roundName)
+    {
+        heading.SetText(roundName);
+    }
 }

@@ -11,6 +11,8 @@ public class Scorer : MonoBehaviour
     public Rigidbody2D ball;
     public ScoreDisplay scoreDisplay;
     public int playerMulti, opponentMulti;
+    public Ball theBall;
+    public GameStatsManager gameStats;
 
     private bool triggering;
     private ParticleSystem ballTrail;
@@ -36,6 +38,15 @@ public class Scorer : MonoBehaviour
 
         if (other.gameObject.CompareTag("Ball"))
         {
+            if (playerMulti == 1)
+            {
+                var hitter = theBall.LastToucher();
+                if (dudes.Contains(hitter))
+                {
+                    gameStats.CompleteChallenge(2);
+                }
+            }
+            
             triggering = true;
             Invoke(nameof(NextRound), 0.75f);
             return;
@@ -46,6 +57,10 @@ public class Scorer : MonoBehaviour
         
         if (dudes.Contains(d))
         {
+            if (playerMulti == 1)
+            {
+                gameStats.CompleteChallenge(5);
+            }
             d.ReturnHome();
         }
     }

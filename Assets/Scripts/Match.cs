@@ -13,9 +13,11 @@ public class Match : MonoBehaviour
     public Appearer infoAppearer;
     public TextWithBackground infoText;
     public DudeAI ai1, ai2;
+    public GameStatsManager gameStats;
 
     private bool isMirrored;
     private bool changing;
+    private float matchTime;
 
     private void Start()
     {
@@ -29,6 +31,7 @@ public class Match : MonoBehaviour
         splash.SetPlayerNames(dudes[0], dudes[1]);
         splash.SetOpponentNames(dudes[3].GetColor(), dudes[2].GetColor());
         splash.Show();
+        splash.SetHeading(gameStats.GetRoundName());
         
         Invoke(nameof(OnStart), 5f);
     }
@@ -39,20 +42,35 @@ public class Match : MonoBehaviour
         overviewCam.SetActive(false);
     }
 
-    public void End(bool won)
+    public void End(bool won, int total)
     {
         overviewCam.SetActive(true);
         
         if (won)
         {
+            if (total >= 15)
+            {
+                gameStats.CompleteChallenge(3);
+            }
+            
+            if (matchTime >= 5 * 60f)
+            {
+                gameStats.CompleteChallenge(4);
+            }
+            
+            gameStats.GetData().wins++;
             ShowInfo("YOU WON!");
-            Invoke(nameof(OnEnd), 2f);    
+            Invoke(nameof(OnEnd), 2f);
+            gameStats.CompleteChallenge(0);
         }
         else
         {
+            gameStats.GetData().losses++;
             ShowInfo("YOU LOST!");
             Invoke(nameof(BackToMenu), 3f);
         }
+        
+        gameStats.Save();
     }
 
     private void OnEnd()
@@ -63,6 +81,7 @@ public class Match : MonoBehaviour
 
     private void Update()
     {
+        matchTime += Time.deltaTime;
         DebugControls();
         UpdateMirroring();
         LockMenus();

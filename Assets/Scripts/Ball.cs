@@ -11,6 +11,7 @@ public class Ball : MonoBehaviour
     public Rigidbody2D body;
     public GameObject super;
     public ParticleSystem superStars;
+    public GameStatsManager gameStats;
 
     private float stopCooldown;
     private float homingAmount, homingDirection;
@@ -24,6 +25,7 @@ public class Ball : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other)
     {
         var mag = other.relativeVelocity.magnitude;
+        var dude = other.gameObject.GetComponentInParent<Dude>();
         
         if ((other.gameObject.CompareTag("Ground") || other.gameObject.CompareTag("Net")) && mag > 7f)
         {
@@ -45,6 +47,11 @@ public class Ball : MonoBehaviour
             transform.parent.localScale = new Vector3(x, y, 1);   
         }
 
+        if (homingAmount > 0f && other.gameObject.CompareTag("Hand") && dude && dude != lastHit)
+        {
+            gameStats.CompleteChallenge(7);
+        }
+
         if (mag > effectLimit)
         {
             cam.BaseEffect(other.relativeVelocity.magnitude * 0.01f);
@@ -56,8 +63,6 @@ public class Ball : MonoBehaviour
                 {
                     EffectManager.Instance.AddEffect(2, other.contacts[0].point);
                 }
-                
-                var dude = other.gameObject.GetComponentInParent<Dude>();
 
                 if (mag > 20f && stopCooldown <= 0f && other.rigidbody.velocity.magnitude > 12f)
                 {
@@ -66,8 +71,17 @@ public class Ball : MonoBehaviour
                     Time.timeScale = 0f;
                     this.StartCoroutine(() => Time.timeScale = 1f, 1f / 60f);
 
+                    if (body.angularVelocity > 550f && dude.direction > 0)
+                    {
+                        gameStats.CompleteChallenge(6);
+                    }
+
                     if (dude && dude.partner == lastHit)
                     {
+                        if (dude.direction > 0)
+                        {
+                            gameStats.CompleteChallenge(1);
+                        }
                         AddHoming(dude.GetRawStat(Stat.Super) * 1f, dude.direction);
                     }
                 }
@@ -100,7 +114,7 @@ public class Ball : MonoBehaviour
 
         if (homingAmount > 0f && SameSign(body.position.x, homingDirection))
         {
-            body.AddForce(Vector2.down * (7f * homingAmount), ForceMode2D.Force);
+            body.AddForce(Vector2.down * (10f * homingAmount), ForceMode2D.Force);
         }
         
         if (homingAmount > 0f && body.velocity.magnitude < 5f)
@@ -132,5 +146,10 @@ public class Ball : MonoBehaviour
     private void ClearHoming()
     {
         AddHoming(0f, 0f);
+    }
+
+    public Dude LastToucher()
+    {
+        return lastHit;
     }
 }
