@@ -63,7 +63,7 @@ public class Match : MonoBehaviour
                 gameStats.CompleteChallenge(4);
             }
             
-            if (matchTime < 60f)
+            if (matchTime < 120f)
             {
                 gameStats.CompleteChallenge(8);
             }

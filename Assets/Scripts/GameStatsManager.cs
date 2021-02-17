@@ -99,7 +99,7 @@ public class Challenge
         "Fault!", // 5
         "Hit a curve ball",
         "Receive a special hit",
-        "Win under a minute",
+        "Win under two minutes",
         "Win a flawless match"
     };
     
