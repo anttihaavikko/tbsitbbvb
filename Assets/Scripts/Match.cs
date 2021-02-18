@@ -84,9 +84,7 @@ public class Match : MonoBehaviour
             ShowInfo("YOU LOST!");
             Invoke(nameof(BackToMenu), 3f);
         }
-        
-        Debug.Log("Match lasted for " + matchTime);
-        
+
         gameStats.Save();
     }
 

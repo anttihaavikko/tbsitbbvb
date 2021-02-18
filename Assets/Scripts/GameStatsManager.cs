@@ -43,7 +43,6 @@ public class GameStatsManager : MonoBehaviour
 
     public bool WasSolo()
     {
-        Debug.Log("Toucher count is: " + touchers.Count);
         return touchers.Count <= 1;
     }
 
