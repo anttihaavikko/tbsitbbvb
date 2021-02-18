@@ -9,6 +9,7 @@ public class Appearer : MonoBehaviour
 	public float hideDelay;
     public bool silent;
     public bool randomizeAngle;
+    public float maxAngle = 5f;
 
     public TMP_Text text;
     private Vector3 size;
@@ -28,7 +29,7 @@ public class Appearer : MonoBehaviour
     {
 	    if (randomizeAngle)
 	    {
-			transform.rotation = Quaternion.Euler(new Vector3(0, 0, Random.Range(-5f, 5f)));    
+			transform.rotation = Quaternion.Euler(new Vector3(0, 0, Random.Range(-maxAngle, maxAngle)));    
 	    }
 	    
         if(!silent)

@@ -240,7 +240,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5194702151802706002, guid: 8ea6879cc535745719cc7fc8a56da4b2, type: 3}
       propertyPath: sceneToLoadAtStart
-      value: Menu
+      value: Title
       objectReference: {fileID: 0}
     - target: {fileID: 6560042454751651969, guid: 8ea6879cc535745719cc7fc8a56da4b2, type: 3}
       propertyPath: startsOpen
