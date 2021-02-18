@@ -9,6 +9,7 @@ public class Shine : MonoBehaviour {
 	public Transform mirrorParent;
 	public bool checkRotation = false;
 	public Vector3 focus = Vector3.up * 10f;
+	public Transform focusOn;
 
 	// Use this for initialization
 	void Start () {
@@ -17,13 +18,16 @@ public class Shine : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Vector3 direction = (focus - transform.position).normalized;
+		var p = focusOn ? focusOn.position : focus;
+		var direction = (p - transform.position).normalized;
 		direction.z = originalPos.z;
 		direction.x = mirrorParent ? mirrorParent.localScale.x * direction.x : direction.x;
 
 		if (checkRotation) {
-			float angle = transform.parent.rotation.eulerAngles.z;
-			float aMod = Mathf.Sign (transform.parent.lossyScale.x);
+			var t = transform;
+			var parent = t.parent;
+			var angle = parent.rotation.eulerAngles.z;
+			var aMod = Mathf.Sign (parent.lossyScale.x);
 			direction = Quaternion.Euler(new Vector3(0, 0, -angle * aMod)) * direction;
 		}
 
