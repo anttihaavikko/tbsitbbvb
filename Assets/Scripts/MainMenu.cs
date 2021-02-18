@@ -13,7 +13,7 @@ public class MainMenu : MonoBehaviour
     public Transform challengeContainer;
     public ChallengeTile challengePrefab;
     public Appearer todo;
-    
+
     private bool starting;
 
     private void Start()

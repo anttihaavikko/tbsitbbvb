@@ -38,6 +38,7 @@ public class DudeInfo : MonoBehaviour
         if (menu.infos.Any(info => info.IsAsking())) return;
         if (!Input.GetKeyUp(renameKey) || nameInput.IsAsking()) return;
         asking = true;
+        menu.todo.Hide();
         renameCam.SetActive(true);
         nameInput.Ask(dude.GetName());
         nameInput.onDone += OnNameInputDone;
@@ -58,6 +59,12 @@ public class DudeInfo : MonoBehaviour
 
     private void EndAsk()
     {
+        var data = menu.gameStats.GetData();
+        if (data.wins + data.losses > 0)
+        {
+            menu.todo.Show();
+        }
+        
         asking = false;
     }
 
