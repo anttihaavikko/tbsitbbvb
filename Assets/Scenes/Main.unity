@@ -15541,6 +15541,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 955101116, guid: d00e23093768546c4b47e9629c268e54, type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 519420032}
+    - target: {fileID: 1508680250, guid: d00e23093768546c4b47e9629c268e54, type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 519420032}
+    - target: {fileID: 1839161019, guid: d00e23093768546c4b47e9629c268e54, type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 519420032}
     - target: {fileID: 3814863442552892904, guid: d00e23093768546c4b47e9629c268e54, type: 3}
       propertyPath: m_Name
       value: Background

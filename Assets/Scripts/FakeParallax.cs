@@ -4,14 +4,9 @@ using UnityEngine;
 
 public class FakeParallax : MonoBehaviour
 {
-    private Transform cam;
+    public Transform cam;
+    
     private Vector3 previousCamPos;
-
-    // Start is called before the first frame update
-    void Awake()
-    {
-        cam = Camera.main.transform;
-    }
 
     private void Start()
     {

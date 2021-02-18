@@ -12,6 +12,7 @@ public class DudeInfo : MonoBehaviour
     public NameInput nameInput;
     public KeyCode renameKey;
     public MainMenu menu;
+    public GameObject renameCam;
 
     private bool asking;
 
@@ -35,8 +36,9 @@ public class DudeInfo : MonoBehaviour
     private void Update()
     {
         if (menu.infos.Any(info => info.IsAsking())) return;
-        if (!Input.GetKeyDown(renameKey) || nameInput.IsAsking()) return;
+        if (!Input.GetKeyUp(renameKey) || nameInput.IsAsking()) return;
         asking = true;
+        renameCam.SetActive(true);
         nameInput.Ask(dude.GetName());
         nameInput.onDone += OnNameInputDone;
         nameInput.onUpdate += OnNameInputChange;
@@ -44,6 +46,8 @@ public class DudeInfo : MonoBehaviour
 
     private void OnNameInputDone(string text)
     {
+        renameCam.SetActive(false);
+        
         nameInput.onDone -= OnNameInputDone;
         nameInput.onUpdate -= OnNameInputChange;
         

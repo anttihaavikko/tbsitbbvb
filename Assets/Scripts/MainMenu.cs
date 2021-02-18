@@ -76,6 +76,7 @@ public class MainMenu : MonoBehaviour
 
     private void StartGame()
     {
+        if (Input.GetKeyDown(infos[0].renameKey) || Input.GetKeyDown(infos[1].renameKey)) return;
         if (!Input.anyKeyDown || starting || infos.Any(i => i.IsAsking())) return;
         starting = true;
         // ReSharper disable once Unity.PerformanceCriticalCodeInvocation

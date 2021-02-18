@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RandomMirror : MonoBehaviour
 {
-    private void Start()
+    private void Awake()
     {
         var t = transform;
         var scale = t.localScale;
