@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class TweenAction {
@@ -9,11 +10,13 @@ public class TweenAction {
 		LocalPosition,
 		Rotation,
 		Scale,
-		Color
+		Color,
+		TextColor
 	};
 
 	public Transform theObject;
 	public SpriteRenderer sprite;
+	public TMP_Text textObject;
 	public Vector3 startPos, targetPos;
 	public Quaternion startRot, targetRot;
 	public Color startColor, targetColor;
@@ -90,6 +93,13 @@ public class TweenAction {
         hasBeenInit = true;
         startColor = sprite.color;
     }
+    
+    public IEnumerator SetTextStartColor()
+    {
+	    yield return new WaitForSeconds(tweenDelay);
+	    hasBeenInit = true;
+	    startColor = textObject.color;
+    }
 
     public bool Process() {
 
@@ -125,6 +135,10 @@ public class TweenAction {
 
 			if (type == Type.Color) {
 				sprite.color = Lerp (startColor, targetColor, DoEase ());
+			}
+			
+			if (type == Type.TextColor) {
+				textObject.color = Lerp (startColor, targetColor, DoEase ());
 			}
 		}
 

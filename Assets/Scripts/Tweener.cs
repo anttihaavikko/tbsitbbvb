@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Tweener : MonoBehaviour {
@@ -126,4 +127,16 @@ public class Tweener : MonoBehaviour {
 		act.targetColor = color;
         StartCoroutine(act.SetStartColor());
     }
+	
+	public void ColorTo(TMP_Text obj, Color color, float duration, float delay, System.Func<float, float> ease = null, int easeIndex = -1, bool removeOld = true) {
+		if (ease == null) {
+			ease = TweenEasings.LinearInterpolation;
+		}
+
+		TweenAction act = AddTween (obj.transform, Vector3.zero, TweenAction.Type.TextColor, duration, delay, ease, easeIndex, removeOld);
+		act.textObject = obj;
+		act.startColor = act.textObject.color;
+		act.targetColor = color;
+		StartCoroutine(act.SetTextStartColor());
+	}
 }

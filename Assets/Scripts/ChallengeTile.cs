@@ -10,6 +10,8 @@ public class ChallengeTile : MonoBehaviour
 {
     public TMP_Text textActual, textBg;
 
+    private readonly Color white = new Color(1f, 1f, 1f, 0.5f);
+
     public void SetText(int index, GameStats stats)
     {
         var challenge = " - " + Challenge.Names[index];
@@ -33,7 +35,9 @@ public class ChallengeTile : MonoBehaviour
 
     private void AnimateIn(Vector3 s)
     {
-        Tweener.Instance.ScaleTo(textBg.transform, s, 0.5f, 0, TweenEasings.BackEaseOut);
+        Tweener.Instance.ScaleTo(textBg.transform, s, 0.75f, 0, TweenEasings.BackEaseOut);
+        Tweener.Instance.ColorTo(textBg, white, 0.5f, 0, TweenEasings.BackEaseOut);
+        Tweener.Instance.ColorTo(textActual, white, 0.5f, 0, TweenEasings.BackEaseOut);
     }
 
     private void ActivateIfDone(int index, GameStats stats)
@@ -41,6 +45,8 @@ public class ChallengeTile : MonoBehaviour
         if (stats.completed.Any(c => c.index == index))
         {
             textBg.gameObject.SetActive(true);
+            textBg.color = white;
+            textActual.color = white;
         }
     }
 }
