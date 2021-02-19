@@ -20217,6 +20217,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1351139102}
     - target: {fileID: 6409087944074469798, guid: 35acee41c43fe4603a20f91bac272c40, type: 3}
+      propertyPath: match
+      value: 
+      objectReference: {fileID: 177794815}
+    - target: {fileID: 6409087944074469798, guid: 35acee41c43fe4603a20f91bac272c40, type: 3}
       propertyPath: partner
       value: 
       objectReference: {fileID: 951144253}
@@ -21858,6 +21862,10 @@ PrefabInstance:
       propertyPath: ball
       value: 
       objectReference: {fileID: 1351139102}
+    - target: {fileID: 6409087944074469798, guid: 35acee41c43fe4603a20f91bac272c40, type: 3}
+      propertyPath: match
+      value: 
+      objectReference: {fileID: 177794815}
     - target: {fileID: 6409087944074469798, guid: 35acee41c43fe4603a20f91bac272c40, type: 3}
       propertyPath: partner
       value: 

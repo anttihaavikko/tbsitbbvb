@@ -16,12 +16,6 @@ public class Scorer : MonoBehaviour
     public EffectCamera cam;
 
     private bool triggering;
-    private ParticleSystem ballTrail;
-
-    private void Start()
-    {
-        ballTrail = ball.gameObject.GetComponentInChildren<ParticleSystem>();
-    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -63,26 +57,17 @@ public class Scorer : MonoBehaviour
 
     private void NextRound()
     {
-        EffectManager.Instance.AddEffect(0, ball.position);
-        EffectManager.Instance.AddEffect(2, ball.position);
-        cam.BaseEffect(0.6f);
-        ballTrail.Stop();
         var ended = scoreDisplay.UpdateScores(playerMulti, opponentMulti);
 
         if (ended) return;
-
+        
         var starter = dudes.OrderByDescending(d => Mathf.Abs(d.body.position.x)).First().body.position;
-        var t = ball.transform;
-        t.parent.position = new Vector2(starter.x, 5f);
-        t.localPosition = Vector3.zero;
-        ball.position = new Vector2(starter.x, 5f);
-        ball.velocity = Vector2.zero;
-        Invoke(nameof(ReactivateBallTrail), 0.2f);
+        theBall.RespawnOn(new Vector2(starter.x, 5f));
+        Invoke(nameof(EnableTrigger), 0.2f);
     }
 
-    private void ReactivateBallTrail()
+    private void EnableTrigger()
     {
-        ballTrail.Play();
         triggering = false;
     }
 }

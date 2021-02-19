@@ -16,10 +16,12 @@ public class Ball : MonoBehaviour
     private float stopCooldown;
     private float homingAmount, homingDirection;
     private Dude lastHit, lastHitNoReset;
+    private ParticleSystem trail;
 
     private void Start()
     {
         superStars.Stop();
+        trail = body.gameObject.GetComponentInChildren<ParticleSystem>();
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -162,5 +164,26 @@ public class Ball : MonoBehaviour
     public Dude LastToucher()
     {
         return lastHitNoReset;
+    }
+
+    public void RespawnOn(Vector2 pos)
+    {
+        trail.Stop();
+        
+        EffectManager.Instance.AddEffect(0, body.position);
+        EffectManager.Instance.AddEffect(2, body.position);
+        cam.BaseEffect(0.3f);
+        
+        var t = body.transform;
+        t.parent.position = pos;
+        t.localPosition = Vector3.zero;
+        body.position = pos;
+        body.velocity = Vector2.zero;
+        Invoke(nameof(ReactivateBallTrail), 0.2f);
+    }
+    
+    private void ReactivateBallTrail()
+    {
+        trail.Play();
     }
 }
