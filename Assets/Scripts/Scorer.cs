@@ -13,6 +13,7 @@ public class Scorer : MonoBehaviour
     public int playerMulti, opponentMulti;
     public Ball theBall;
     public GameStatsManager gameStats;
+    public EffectCamera cam;
 
     private bool triggering;
     private ParticleSystem ballTrail;
@@ -26,11 +27,6 @@ public class Scorer : MonoBehaviour
     {
         Check(other);
     }
-
-    // private void OnTriggerStay2D(Collider2D other)
-    // {
-    //     Check(other);
-    // }
 
     private void Check(Component other)
     {
@@ -68,6 +64,8 @@ public class Scorer : MonoBehaviour
     private void NextRound()
     {
         EffectManager.Instance.AddEffect(0, ball.position);
+        EffectManager.Instance.AddEffect(2, ball.position);
+        cam.BaseEffect(0.6f);
         ballTrail.Stop();
         var ended = scoreDisplay.UpdateScores(playerMulti, opponentMulti);
 

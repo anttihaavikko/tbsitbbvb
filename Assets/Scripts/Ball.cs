@@ -27,7 +27,7 @@ public class Ball : MonoBehaviour
         var mag = other.relativeVelocity.magnitude;
         var dude = other.gameObject.GetComponentInParent<Dude>();
 
-        if (dude && dude.direction == 1)
+        if (dude && dude.direction > 0)
         {
             gameStats.AddToucher(dude);
         }
@@ -35,6 +35,11 @@ public class Ball : MonoBehaviour
         if ((other.gameObject.CompareTag("Ground") || other.gameObject.CompareTag("Net")) && mag > 7f)
         {
             EffectManager.Instance.AddEffect(1, other.contacts[0].point);
+
+            if (mag > 5)
+            {
+                cam.BaseEffect(Mathf.Clamp(mag * 0.01f, 0f, 0.5f));
+            }
         }
 
         if (!other.gameObject.CompareTag("Hand") && !other.gameObject.CompareTag("Net"))
