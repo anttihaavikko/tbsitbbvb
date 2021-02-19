@@ -16,9 +16,11 @@ public class Tutorial : MonoBehaviour
     public List<Appearer> splashTexts;
     public Appearer ending;
     public GameStatsManager gameStats;
+    public List<ControlHelp> controlHelps;
 
     private int step = -1;
     private bool movingDone;
+    private bool canStart;
 
     private readonly string[] messages =
     {
@@ -32,11 +34,18 @@ public class Tutorial : MonoBehaviour
     {
         startCam.SetActive(false);
         splashTexts.ForEach(st => st.HideWithDelay());
+        Invoke(nameof(ShowMoveHelps), 4.5f);
+    }
+
+    private void ShowMoveHelps()
+    {
+        canStart = true;
+        controlHelps.ForEach(h => h.move.Show());
     }
 
     private void Update()
     {
-        if (!movingDone)
+        if (!movingDone && canStart)
         {
             if (dudes.All(d => d.HasMoved()))
             {
@@ -73,7 +82,18 @@ public class Tutorial : MonoBehaviour
             prompt.Hide();
             Invoke(nameof(AllDone), 1f);
             gameStats.MarkTutorialDone();
+            controlHelps.ForEach(h => h.jump.Hide());
             return;
+        }
+
+        if (step == 0)
+        {
+            controlHelps.ForEach(h => h.ShowSwing());
+        }
+        
+        if (step == 2)
+        {
+            controlHelps.ForEach(h => h.ShowJump());
         }
 
         if (step > 1)
