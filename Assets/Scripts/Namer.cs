@@ -46,7 +46,18 @@ public static class Namer
         "chi",
         "won",
         "von",
-        "tis"
+        "tis",
+        "an",
+        "ne",
+        "os",
+        "sim",
+        "pal",
+        "ju",
+        "re",
+        "mar",
+        "tin",
+        "woo",
+        "pil"
     };
 
     private static string GetRandom(Random rand, IEnumerable<string> parts)
