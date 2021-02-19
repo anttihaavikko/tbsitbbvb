@@ -114,7 +114,8 @@ public class Challenge
         "Receive a special hit",
         "Win under two minutes",
         "Win a flawless match",
-        "Win solo"
+        "Win solo", // 10
+        "Win without swinging"
     };
     
     public int index;

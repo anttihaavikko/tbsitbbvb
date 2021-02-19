@@ -18,6 +18,7 @@ public class Match : MonoBehaviour
     private bool isMirrored;
     private bool changing;
     private float matchTime;
+    private int swingCount;
 
     private void Start()
     {
@@ -71,6 +72,11 @@ public class Match : MonoBehaviour
             if (gameStats.WasSolo())
             {
                 gameStats.CompleteChallenge(10);
+            }
+
+            if (swingCount == 0)
+            {
+                gameStats.CompleteChallenge(11);
             }
             
             gameStats.GetData().wins++;
@@ -188,5 +194,10 @@ public class Match : MonoBehaviour
     private void HideInfo()
     {
         infoAppearer.Hide();
+    }
+
+    public void AddSwing()
+    {
+        swingCount++;
     }
 }

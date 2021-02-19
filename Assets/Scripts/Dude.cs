@@ -25,6 +25,7 @@ public class Dude : MonoBehaviour
     public Transform hand;
     public Dude partner;
     public Transform armTrailer;
+    public Match match;
 
     private Stats stats;
     private Vector2 startBodyPos, startArmPos;
@@ -135,7 +136,12 @@ public class Dude : MonoBehaviour
         if (!canMove) return;
 
         swinging = true;
-        this.StartCoroutine(() => swinging = false, 0.1f); 
+        this.StartCoroutine(() => swinging = false, 0.1f);
+
+        if (match && direction > 0)
+        {
+            match.AddSwing();
+        }
         
         // DisableAnimation();
         var force = stats.Get(Stat.Strength);
