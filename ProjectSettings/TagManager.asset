@@ -52,3 +52,9 @@ TagManager:
   - name: Help Mask
     uniqueID: 34366559
     locked: 0
+  - name: World Canvas
+    uniqueID: 3070943069
+    locked: 0
+  - name: Bonus Control Mask
+    uniqueID: 1178233673
+    locked: 0
