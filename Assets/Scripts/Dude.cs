@@ -31,6 +31,7 @@ public class Dude : MonoBehaviour
     private Vector2 startBodyPos, startArmPos;
     private bool canMove = true;
     private bool swinging;
+    private bool hasMoved;
 
     private void Awake()
     {
@@ -115,6 +116,11 @@ public class Dude : MonoBehaviour
         
         var velocity = body.velocity;
         body.velocity = Vector2.MoveTowards(velocity, new Vector2(dir * 7f * stats.Get(Stat.Speed), velocity.y), 1f);
+
+        if (Mathf.Abs(dir) > 0.5f)
+        {
+            hasMoved = true;
+        }
     }
 
     public void Jump()
@@ -275,6 +281,11 @@ public class Dude : MonoBehaviour
     {
         stats.name = newName;
         SaveStats();
+    }
+
+    public bool HasMoved()
+    {
+        return hasMoved;
     }
 }
 

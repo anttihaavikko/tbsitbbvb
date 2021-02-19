@@ -80,11 +80,18 @@ public class GameStatsManager : MonoBehaviour
         
         data.recentlyCompleted.Add(new Challenge(index));
     }
+
+    public void MarkTutorialDone()
+    {
+        data.tutorialDone = true;
+        Save();
+    }
 }
 
 [System.Serializable]
 public class GameStats
 {
+    public bool tutorialDone;
     public int wins;
     public int losses;
     public List<Challenge> completed;

@@ -168,6 +168,11 @@ public class Ball : MonoBehaviour
 
     public void RespawnOn(Vector2 pos)
     {
+        if (!trail)
+        {
+            trail = body.gameObject.GetComponentInChildren<ParticleSystem>();    
+        }
+        
         trail.Stop();
         
         EffectManager.Instance.AddEffect(0, body.position);

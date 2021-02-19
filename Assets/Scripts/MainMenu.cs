@@ -68,18 +68,30 @@ public class MainMenu : MonoBehaviour
     {
         if (!Application.isEditor) return;
 
-        if (Input.GetKeyDown(KeyCode.C))
+        if (Input.GetKeyDown(KeyCode.Alpha0))
         {
             gameStats.Clear();
+            SceneChanger.Instance.ChangeScene("Title");
         }
+
+        if (EscOnNonWeb())
+        {
+            Application.Quit();
+        }
+    }
+
+    private bool EscOnNonWeb()
+    {
+        return Application.platform != RuntimePlatform.WebGLPlayer && Input.GetKeyDown(KeyCode.Escape);
     }
 
     private void StartGame()
     {
-        if (Input.GetKeyDown(infos[0].renameKey) || Input.GetKeyDown(infos[1].renameKey)) return;
+        if (Input.GetKeyDown(infos[0].renameKey) || Input.GetKeyDown(infos[1].renameKey) || EscOnNonWeb()) return;
         if (!Input.anyKeyDown || starting || infos.Any(i => i.IsAsking())) return;
         starting = true;
         // ReSharper disable once Unity.PerformanceCriticalCodeInvocation
-        SceneChanger.Instance.ChangeScene("Main");
+        var scene = gameStats.GetData().tutorialDone ? "Main" : "Tutorial";
+        SceneChanger.Instance.ChangeScene(scene);
     }
 }
