@@ -96,7 +96,7 @@ public class DudeAI : MonoBehaviour
         const float correction = 0f;
         var diff = dude.body.position.x - ball.position.x - ball.velocity.x * correction;
         var dist = Mathf.Abs(diff);
-        if (dist > 0.5f && dist < 4f)
+        if (dist > 0.5f && dist < 4f && Random.value > chance)
         {
             dude.Move(-Mathf.Sign(diff));
         }
