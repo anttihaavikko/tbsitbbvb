@@ -35,7 +35,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 23.413}
+  m_SizeDelta: {x: 250, y: 23.413}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &3273723370671101959
 CanvasRenderer:
@@ -99,7 +99,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 4
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -260,9 +260,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: -11.706508}
-  m_SizeDelta: {x: 200, y: 23.413}
-  m_Pivot: {x: 0.25, y: 0.5}
+  m_AnchoredPosition: {x: 175, y: -11.706508}
+  m_SizeDelta: {x: 250, y: 23.413}
+  m_Pivot: {x: 0.75, y: 0.5}
 --- !u!222 &3273723372442819622
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -291,7 +291,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: <mark=#fff padding='30, 70, 10, 10'>- Win a match
+  m_text: <mark=#fff padding='30, 170, 10, 10'>- Win a match
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 249808ea2aac24a548e5cc71828fe41d, type: 2}
   m_sharedMaterial: {fileID: -5335239974914227683, guid: 249808ea2aac24a548e5cc71828fe41d, type: 2}
@@ -325,7 +325,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 4
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0

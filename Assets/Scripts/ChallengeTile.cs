@@ -10,12 +10,12 @@ public class ChallengeTile : MonoBehaviour
 {
     public TMP_Text textActual, textBg;
 
-    private readonly Color white = new Color(1f, 1f, 1f, 0.5f);
+    public static readonly Color White = new Color(1f, 1f, 1f, 0.5f);
 
     public void SetText(int index, GameStats stats)
     {
-        var challenge = " - " + Challenge.Names[index];
-        textBg.text = "<mark=#ffffff padding='30, 70, 10, 10'>" + challenge + "</mark>";
+        var challenge = Challenge.Names[index];
+        textBg.text = "<mark=#ffffff padding='30, 170, 10, 10'>" + challenge + "</mark>";
         textBg.transform.Rotate(new Vector3(0, 0, Random.Range(-4f, 4f)));
         textBg.gameObject.SetActive(false);
         textActual.text = challenge;
@@ -36,8 +36,8 @@ public class ChallengeTile : MonoBehaviour
     private void AnimateIn(Vector3 s)
     {
         Tweener.Instance.ScaleTo(textBg.transform, s, 0.75f, 0, TweenEasings.BackEaseOut);
-        Tweener.Instance.ColorTo(textBg, white, 0.5f, 0, TweenEasings.BackEaseOut);
-        Tweener.Instance.ColorTo(textActual, white, 0.5f, 0, TweenEasings.BackEaseOut);
+        Tweener.Instance.ColorTo(textBg, White, 0.5f, 0, TweenEasings.BackEaseOut);
+        Tweener.Instance.ColorTo(textActual, White, 0.5f, 0, TweenEasings.BackEaseOut);
     }
 
     private void ActivateIfDone(int index, GameStats stats)
@@ -45,8 +45,8 @@ public class ChallengeTile : MonoBehaviour
         if (stats.completed.Any(c => c.index == index))
         {
             textBg.gameObject.SetActive(true);
-            textBg.color = white;
-            textActual.color = white;
+            textBg.color = White;
+            textActual.color = White;
         }
     }
 }

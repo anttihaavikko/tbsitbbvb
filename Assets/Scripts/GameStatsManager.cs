@@ -104,6 +104,7 @@ public class GameStats
     public int losses;
     public List<Challenge> completed;
     public List<Challenge> recentlyCompleted;
+    public string id;
 
     public GameStats()
     {
@@ -111,6 +112,7 @@ public class GameStats
         losses = 0;
         completed = new List<Challenge>();
         recentlyCompleted = new List<Challenge>();
+        id = Guid.NewGuid().ToString();
     }
 }
 

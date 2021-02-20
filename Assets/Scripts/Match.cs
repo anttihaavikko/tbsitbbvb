@@ -14,6 +14,7 @@ public class Match : MonoBehaviour
     public TextWithBackground infoText;
     public DudeAI ai1, ai2;
     public GameStatsManager gameStats;
+    public ScoreManager scoreManager;
 
     private bool isMirrored;
     private bool changing;
@@ -95,9 +96,21 @@ public class Match : MonoBehaviour
             ShowInfo("YOU LOST!");
             Invoke(nameof(BackToMenu), 3f);
             AudioManager.Instance.ToMenu();
+            SendScore();
         }
 
         gameStats.Save();
+    }
+
+    private void SendScore()
+    {
+        var c1 = ColorUtility.ToHtmlStringRGB(dudes[0].GetColor());
+        var c2 = ColorUtility.ToHtmlStringRGB(dudes[1].GetColor());
+        var data = gameStats.GetData();
+        var challenges = data.completed.Count + data.recentlyCompleted.Count;
+        var score = 10 * challenges + data.wins - data.losses;
+        var big = ScoreRow.GetNum(challenges, data.wins, data.losses);
+        scoreManager.SubmitScore(dudes[0].GetName() + "-" + dudes[1].GetName() + "-" + c1 + "-" + c2, score, big, data.id);
     }
 
     private void OnEnd()
@@ -158,6 +171,8 @@ public class Match : MonoBehaviour
         if (!menu1.Selected() || !menu2.Selected()) return;
         if (changing) return;
         
+        SendScore();
+        
         changing = true;
         
         menu1.Lock();
@@ -172,6 +187,10 @@ public class Match : MonoBehaviour
         }, 0.5f);
         
         Invoke(nameof(BackToMenu), 1f);
+        // scoreManager.onUploaded += () =>
+        // {
+        //     Debug.Log("Score uploaded callback!");
+        // };
     }
 
     private void RestartScene()

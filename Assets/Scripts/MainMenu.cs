@@ -13,12 +13,19 @@ public class MainMenu : MonoBehaviour
     public Transform challengeContainer;
     public ChallengeTile challengePrefab;
     public Appearer todo;
+    public ScoreManager scoreManager;
+    public ScoreRow scoreRowPrefab;
+    public Transform leaderboardsContainer;
 
     private bool starting;
     private bool canInteract;
+    private int page;
 
     private void Start()
     {
+        scoreManager.LoadLeaderBoards(page);
+        scoreManager.onLoaded += ScoresLoaded;
+        
         Cursor.visible = false;
         
         var rand = new System.Random();
@@ -50,6 +57,24 @@ public class MainMenu : MonoBehaviour
         MarkChallengesDone(data);
         
         Invoke(nameof(EnableStart), 1.7f);
+    }
+
+    private void ScoresLoaded()
+    {
+        var data = scoreManager.GetData();
+        
+        data.scores.ToList().ForEach(entry =>
+        {
+            var parts = entry.name.Split('-');
+            var row = Instantiate(scoreRowPrefab, leaderboardsContainer);
+            var name1 = "<color=#" + parts[2] + ">" + parts[0] + "</color>";
+            var name2 = "<color=#" + parts[3] + ">" + parts[1] + "</color>";
+            var details = ScoreRow.GetDetails(long.Parse(entry.level));
+            var percentage = Mathf.RoundToInt(details.challenges * 1f / Challenge.Names.Length * 100);
+            var sep = "<color=#ffffff80> / </color>";
+            row.Setup(entry.position + ".", name1 + " & " + name2, details.wins + "-" + details.losses + sep + "<size=10>" + percentage + "% done</size>");
+            FlagManager.SetFlag(row.flag, entry.locale);
+        });
     }
 
     private void EnableStart()
