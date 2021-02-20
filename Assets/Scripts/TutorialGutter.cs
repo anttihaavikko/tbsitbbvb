@@ -5,6 +5,7 @@ using UnityEngine;
 public class TutorialGutter : MonoBehaviour
 {
     public Tutorial tutorial;
+
     private bool triggering;
     
     private void OnTriggerEnter2D(Collider2D other)
@@ -18,6 +19,8 @@ public class TutorialGutter : MonoBehaviour
 
     private void Next()
     {
+        var h = tutorial.ball.GetHitter();
+        if(h) h.partner.SayNice();
         tutorial.NextSpot();
         Invoke(nameof(EnableTrigger), 0.2f);
     }

@@ -69,6 +69,7 @@ public class Tutorial : MonoBehaviour
 
     private void BackToMenu()
     {
+        AudioManager.Instance.ToMenu();
         SceneChanger.Instance.ChangeScene("Menu");
     }
 

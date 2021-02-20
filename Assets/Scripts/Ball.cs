@@ -13,6 +13,7 @@ public class Ball : MonoBehaviour
     public GameObject super;
     public ParticleSystem superStars;
     public GameStatsManager gameStats;
+    public AudioSource superSound;
 
     private float stopCooldown;
     private float homingAmount, homingDirection;
@@ -51,7 +52,7 @@ public class Ball : MonoBehaviour
             }
         }
 
-        if (!other.gameObject.CompareTag("Hand") && !other.gameObject.CompareTag("Net"))
+        if (!other.gameObject.CompareTag("Hand") && !other.gameObject.CompareTag("Net") && homingAmount > 0f)
         {
             ClearHoming();   
         }
@@ -101,8 +102,15 @@ public class Ball : MonoBehaviour
                         {
                             gameStats.CompleteChallenge(1);
                         }
-                        AddHoming(dude.GetRawStat(Stat.Super) * 1f, dude.direction);
+                        
+                        AddHoming(dude.GetStat(Stat.Super), dude.direction);
                         dude.partner.SayNice(Random.Range(0.2f, 0.4f));
+                        
+                        AudioManager.Instance.PlayEffectAt(10, body.position, 1f);
+                        AudioManager.Instance.PlayEffectAt(9, body.position, 0.465f);
+                        AudioManager.Instance.PlayEffectAt(22, body.position, 0.759f);
+                        AudioManager.Instance.PlayEffectAt(16, body.position, 1f);
+                        AudioManager.Instance.PlayEffectAt(15, body.position, 1f);
                     }
                 }
 
@@ -142,7 +150,7 @@ public class Ball : MonoBehaviour
 
         if (homingAmount > 0f && SameSign(body.position.x, homingDirection))
         {
-            body.AddForce(Vector2.down * (10f * homingAmount), ForceMode2D.Force);
+            body.AddForce(Vector2.down * (15f * homingAmount), ForceMode2D.Force);
         }
         
         if (homingAmount > 0f && body.velocity.magnitude < 5f)
@@ -160,14 +168,20 @@ public class Ball : MonoBehaviour
     {
         homingAmount = amount;
         homingDirection = direction;
-        super.SetActive(amount > 0f);
-        if (amount > 0f)
+        var isOn = amount > 0f;
+        
+        super.SetActive(isOn);
+        
+        if (isOn)
         {
+            superSound.Play();
             superStars.Play();
         }
         else
         {
+            superSound.Stop();
             superStars.Stop();
+            AudioManager.Instance.PlayEffectAt(36, body.position, 2f);
         }
     }
 
@@ -198,6 +212,10 @@ public class Ball : MonoBehaviour
         lastHitNoReset = null;
         
         trail.Stop();
+        
+        AudioManager.Instance.PlayEffectAt(36, body.position, 2f);
+        AudioManager.Instance.PlayEffectAt(12, body.position, 0.784f);
+        AudioManager.Instance.PlayEffectAt(18, body.position, 1f);
         
         EffectManager.Instance.AddEffect(0, body.position);
         EffectManager.Instance.AddEffect(2, body.position);
