@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Scorer : MonoBehaviour
 {
@@ -39,6 +40,13 @@ public class Scorer : MonoBehaviour
 
             triggering = true;
             Invoke(nameof(NextRound), 0.75f);
+
+            var lt = theBall.GetHitter();
+            if (dudes.Contains(lt))
+            {
+                lt.partner.SayNice(Random.Range(0.2f, 0.5f));
+            }
+
             return;
         }
 

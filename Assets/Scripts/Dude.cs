@@ -180,6 +180,15 @@ public class Dude : MonoBehaviour
         face.OpenMouth(0.3f);
     }
 
+    public void SayNice(float delay = 0f)
+    {
+        this.StartCoroutine(() =>
+        {
+            AudioManager.Instance.PlayEffectAt(Random.Range(32, 36), face.transform.position, 3f);
+            face.OpenMouth(0.4f);
+        }, delay);
+    }
+
     private void AddGhost()
     {
         if (Mathf.Abs(arm.angularVelocity) > 500f)

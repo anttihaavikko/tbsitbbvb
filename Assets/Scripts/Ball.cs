@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Ball : MonoBehaviour
 {
@@ -15,7 +16,7 @@ public class Ball : MonoBehaviour
 
     private float stopCooldown;
     private float homingAmount, homingDirection;
-    private Dude lastHit, lastHitNoReset;
+    private Dude lastHit, lastHitNoReset, hitter;
     private ParticleSystem trail;
 
     private void Start()
@@ -101,7 +102,15 @@ public class Ball : MonoBehaviour
                             gameStats.CompleteChallenge(1);
                         }
                         AddHoming(dude.GetRawStat(Stat.Super) * 1f, dude.direction);
+                        dude.partner.SayNice(Random.Range(0.2f, 0.4f));
                     }
+                }
+
+                if (!lastHitNoReset) hitter = dude;
+
+                if (lastHitNoReset && Math.Abs(lastHitNoReset.direction - dude.direction) > 0.1f)
+                {
+                    hitter = lastHitNoReset;
                 }
 
                 lastHit = dude;
@@ -170,6 +179,11 @@ public class Ball : MonoBehaviour
     public Dude LastToucher()
     {
         return lastHitNoReset;
+    }
+
+    public Dude GetHitter()
+    {
+        return hitter;
     }
 
     public void RespawnOn(Vector2 pos)
