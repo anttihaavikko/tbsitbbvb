@@ -15,6 +15,7 @@ public class MainMenu : MonoBehaviour
     public Appearer todo;
 
     private bool starting;
+    private bool canInteract;
 
     private void Start()
     {
@@ -45,6 +46,13 @@ public class MainMenu : MonoBehaviour
         }
 
         MarkChallengesDone(data);
+        
+        Invoke(nameof(EnableStart), 1.7f);
+    }
+
+    private void EnableStart()
+    {
+        canInteract = true;
     }
 
     private void MarkChallengesDone(GameStats data)
@@ -58,6 +66,8 @@ public class MainMenu : MonoBehaviour
 
     private void Update()
     {
+        if (!canInteract) return;
+        
         // ReSharper disable once Unity.PerformanceCriticalCodeInvocation
         StartGame();
 
