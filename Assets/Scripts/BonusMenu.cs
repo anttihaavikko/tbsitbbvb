@@ -93,6 +93,7 @@ public class BonusMenu : MonoBehaviour
             bonus.dimmer.SetActive(false);
             bonus.transform.localScale = Vector3.one * 1.05f;
             dude.ApplyBonus(bonus.GetBonus());
+            dude.SayNice();
         }
 
         selected = !selected;
