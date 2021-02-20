@@ -186,7 +186,7 @@ public class Dude : MonoBehaviour
         this.StartCoroutine(() =>
         {
             sayingEffect.Emit(4);
-            AudioManager.Instance.PlayEffectAt(Random.Range(32, 36), face.transform.position, 3f);
+            AudioManager.Instance.PlayEffectAt(Random.Range(32, 36), face.transform.position, 3f, false);
             face.OpenMouth(0.4f);
         }, delay);
     }

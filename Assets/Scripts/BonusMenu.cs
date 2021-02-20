@@ -104,6 +104,8 @@ public class BonusMenu : MonoBehaviour
     {
         if (!bonuses.Any()) return;
         if (selected) Toggle();
+        AudioManager.Instance.PlayEffectAt(5, selectionArrow.position, 0.408f);
+        AudioManager.Instance.PlayEffectAt(8, selectionArrow.position, 1f);
         current = (current + direction + bonuses.Count) % bonuses.Count;
         FocusArrow();
     }
