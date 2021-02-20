@@ -32,6 +32,7 @@ public class Dude : MonoBehaviour
     private bool canMove = true;
     private bool swinging;
     private bool hasMoved;
+    private bool canJump = true;
 
     private void Awake()
     {
@@ -125,15 +126,34 @@ public class Dude : MonoBehaviour
 
     public void Jump()
     {
-        if (!canMove) return;
+        if (!canMove || !canJump) return;
         
         if (Mathf.Abs(body.velocity.y) > 0.5f) return;
         if (!Physics2D.OverlapCircle(groundCheck.position, 0.1f)) return;
         
         // DisableAnimation();
+
+        canJump = false;
+        Invoke(nameof(EnableJump), 0.1f);
         
         body.velocity = new Vector2(body.velocity.x, 0f);
         body.AddForce(Vector2.up * (100f * stats.Get(Stat.Jump)), ForceMode2D.Impulse);
+
+        var position = groundCheck.position;
+        
+        EffectManager.Instance.AddEffectToParent(3, position, groundCheck);
+        
+        AudioManager.Instance.PlayEffectAt(13, position, 0.269f);
+        AudioManager.Instance.PlayEffectAt(6, position, 0.612f);
+        AudioManager.Instance.PlayEffectAt(20, position, 0.8f);
+        AudioManager.Instance.PlayEffectAt(22, position, 0.147f);
+
+        AudioManager.Instance.PlayEffectAt(Random.Range(25, 32), face.transform.position, 3f);
+    }
+
+    private void EnableJump()
+    {
+        canJump = true;
     }
 
     // ReSharper disable Unity.PerformanceAnalysis
@@ -154,6 +174,8 @@ public class Dude : MonoBehaviour
         var right = hand.right;
         arm.AddForce(right * 150f * direction * force, ForceMode2D.Impulse);
         body.AddForce(right * -150f * direction * force, ForceMode2D.Impulse);
+        
+        AudioManager.Instance.PlayEffectAt(Random.Range(25, 32), face.transform.position, 3f);
     }
 
     private void AddGhost()
