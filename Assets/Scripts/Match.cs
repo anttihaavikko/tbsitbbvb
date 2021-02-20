@@ -22,6 +22,8 @@ public class Match : MonoBehaviour
 
     private void Start()
     {
+        Cursor.visible = false;
+        
         AudioManager.Instance.ToMain();
         
         var count = dudes[0].GetLevel();

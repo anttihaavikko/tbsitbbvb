@@ -19,6 +19,8 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
+        Cursor.visible = false;
+        
         var rand = new System.Random();
         infos.Select(di => di.dude).Where(d => string.IsNullOrEmpty(d.GetName())).ToList()
             .ForEach(d => d.SetName(Namer.GenerateName(rand)));
