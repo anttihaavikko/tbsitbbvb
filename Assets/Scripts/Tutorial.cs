@@ -46,6 +46,8 @@ public class Tutorial : MonoBehaviour
 
     private void Update()
     {
+        ShouldQuit();
+        
         if (!movingDone && canStart)
         {
             if (dudes.All(d => d.HasMoved()))
@@ -58,6 +60,14 @@ public class Tutorial : MonoBehaviour
         if (Application.isEditor && Input.GetKeyDown(KeyCode.R))
         {
             SceneChanger.Instance.ChangeScene("Tutorial");
+        }
+    }
+    
+    private void ShouldQuit()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            BackToMenu();
         }
     }
 
