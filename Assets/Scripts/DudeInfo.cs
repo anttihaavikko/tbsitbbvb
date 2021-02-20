@@ -47,7 +47,7 @@ public class DudeInfo : MonoBehaviour
 
     private void OnNameInputDone(string text)
     {
-        dude.SayNice();
+        dude.partner.SayNice();
         
         renameCam.SetActive(false);
         

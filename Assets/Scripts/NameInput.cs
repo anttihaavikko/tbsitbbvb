@@ -44,14 +44,14 @@ public class NameInput : MonoBehaviour {
                     playerName = playerName.Substring(0, playerName.Length - 1);
                     TriggerUpdate();
 
-                    // AudioManager.Instance.PlayEffectAt(19, Vector3.zero, 0.267f);
-                    // AudioManager.Instance.PlayEffectAt(20, Vector3.zero, 0.227f);
-                    // AudioManager.Instance.PlayEffectAt(23, Vector3.zero, 1.174f);
+                    AudioManager.Instance.PlayEffectAt(10, Vector3.zero, 1f);
+                    AudioManager.Instance.PlayEffectAt(5, Vector3.zero, 0.4f);
+
                 }
                 else
                 {
-                    // AudioManager.Instance.PlayEffectAt(18, Vector3.zero, 0.526f);
-                    // AudioManager.Instance.PlayEffectAt(17, Vector3.zero, 0.972f);
+                    AudioManager.Instance.PlayEffectAt(10, Vector3.zero, 1f);
+                    AudioManager.Instance.PlayEffectAt(5, Vector3.zero, 0.4f);
                 }
 
             }
@@ -68,17 +68,13 @@ public class NameInput : MonoBehaviour {
 
                     if (playerName != "")
                     {
-                        // AudioManager.Instance.PlayEffectAt(1, Vector3.zero, 0.478f);
-                        // AudioManager.Instance.PlayEffectAt(2, Vector3.zero, 1f);
-                        // AudioManager.Instance.PlayEffectAt(15, Vector3.zero, 1.474f);
-
                         TriggerUpdate();
 						asking = false;
                         CancelInvoke(nameof(LineToggle));
                         onDone?.Invoke(playerName);
                     } else {
-                        // AudioManager.Instance.PlayEffectAt(18, Vector3.zero, 0.526f);
-                        // AudioManager.Instance.PlayEffectAt(17, Vector3.zero, 0.972f);
+                        AudioManager.Instance.PlayEffectAt(10, Vector3.zero, 1f);
+                        AudioManager.Instance.PlayEffectAt(5, Vector3.zero, 0.4f);
                     }
 
                 }
@@ -89,10 +85,8 @@ public class NameInput : MonoBehaviour {
                         playerName += c.ToString();
                         TriggerUpdate();
 
-                        // AudioManager.Instance.PlayEffectAt(1, Vector3.zero, 0.478f);
-                        // AudioManager.Instance.PlayEffectAt(2, Vector3.zero, 1f);
-                        // AudioManager.Instance.PlayEffectAt(15, Vector3.zero, 1.474f);
-
+                        AudioManager.Instance.PlayEffectAt(5, Vector3.zero, 0.408f);
+                        AudioManager.Instance.PlayEffectAt(8, Vector3.zero, 1f);
                     }
                 }
 
