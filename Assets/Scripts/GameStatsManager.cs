@@ -118,11 +118,11 @@ public class Challenge
         "Win a 5+ min match",
         "Fault!", // 5
         "Hit a curve ball",
+        "Win without swinging",
         "Receive a special hit",
         "Win under two minutes",
-        "Win a flawless match",
-        "Win solo", // 10
-        "Win without swinging"
+        "Win a flawless match", // 10
+        "Win solo"
     };
     
     public int index;
