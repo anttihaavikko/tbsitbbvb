@@ -153,4 +153,13 @@ public class AudioManager : ObjectPool<SoundEffect> {
 	{
 		ChangeMusic(0, 0.2f, 0.2f, 0f);
 	}
+
+	public static void BaseSound(Vector3 p, float vol = 1f)
+	{
+		Instance.PlayEffectAt(4, p, 0.212f * vol);
+		Instance.PlayEffectAt(22, p, 0.277f * vol);
+		Instance.PlayEffectAt(24, p, 0.644f * vol);
+		Instance.PlayEffectAt(9, p, 0.286f * vol);
+		Instance.PlayEffectAt(0, p, 4f * vol);
+	}
 }

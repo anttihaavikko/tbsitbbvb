@@ -311,6 +311,7 @@ MonoBehaviour:
   silent: 0
   randomizeAngle: 0
   maxAngle: 5
+  soundPos: {fileID: 203277723}
   text: {fileID: 0}
 --- !u!1001 &148544236
 PrefabInstance:
@@ -776,6 +777,36 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -3
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &203277722
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 203277723}
+  m_Layer: 0
+  m_Name: TODO sound pos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &203277723
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 203277722}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -9.65, y: -4.47, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 29
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &210839346
 GameObject:
   m_ObjectHideFlags: 0
@@ -1339,6 +1370,7 @@ MonoBehaviour:
   silent: 0
   randomizeAngle: 0
   maxAngle: 5
+  soundPos: {fileID: 0}
   text: {fileID: 0}
 --- !u!114 &565771716
 MonoBehaviour:
@@ -1655,6 +1687,7 @@ MonoBehaviour:
   silent: 0
   randomizeAngle: 0
   maxAngle: 5
+  soundPos: {fileID: 0}
   text: {fileID: 0}
 --- !u!114 &776472874
 MonoBehaviour:
@@ -3394,6 +3427,7 @@ MonoBehaviour:
   silent: 0
   randomizeAngle: 0
   maxAngle: 5
+  soundPos: {fileID: 0}
   text: {fileID: 0}
 --- !u!114 &1220930600
 MonoBehaviour:

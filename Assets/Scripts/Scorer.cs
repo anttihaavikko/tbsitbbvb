@@ -36,7 +36,7 @@ public class Scorer : MonoBehaviour
                     gameStats.CompleteChallenge(2);
                 }
             }
-            
+
             triggering = true;
             Invoke(nameof(NextRound), 0.75f);
             return;
@@ -58,6 +58,8 @@ public class Scorer : MonoBehaviour
     private void NextRound()
     {
         var ended = scoreDisplay.UpdateScores(playerMulti, opponentMulti);
+        
+        AudioManager.Instance.PlayEffectAt(playerMulti == 1 ? 1 : 2, Vector3.zero, 1f);
 
         if (ended) return;
         

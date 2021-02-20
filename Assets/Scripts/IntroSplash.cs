@@ -8,13 +8,14 @@ using Random = UnityEngine.Random;
 public class IntroSplash : MonoBehaviour
 {
     public TextWithBackground heading, vs, home, opponent;
+    public List<Appearer> appearers; 
 
     private void Start()
     {
-        HideAndRotate(heading.transform);
-        HideAndRotate(home.transform);
-        HideAndRotate(vs.transform);
-        HideAndRotate(opponent.transform);
+        // HideAndRotate(heading.transform);
+        // HideAndRotate(home.transform);
+        // HideAndRotate(vs.transform);
+        // HideAndRotate(opponent.transform);
     }
     
     public void SetPlayerNames(Dude d1, Dude d2)
@@ -35,20 +36,19 @@ public class IntroSplash : MonoBehaviour
 
     public void Show()
     {
-        Tweener.Instance.ScaleTo(heading.transform, Vector3.one, 0.3f, 0f, TweenEasings.BounceEaseOut);
-        Tweener.Instance.ScaleTo(home.transform, Vector3.one, 0.3f, 0.2f, TweenEasings.BounceEaseOut);
-        Tweener.Instance.ScaleTo(vs.transform, Vector3.one, 0.3f, 0.4f, TweenEasings.BounceEaseOut);
-        Tweener.Instance.ScaleTo(opponent.transform, Vector3.one, 0.3f, 0.6f, TweenEasings.BounceEaseOut);
-        
-        Invoke(nameof(Hide), 5f);
+        appearers.ForEach(a => a.ShowAfter());
+        Invoke(nameof(Hide), 4.5f);
+    }
+
+    private void AnimateIn(Transform t, float delay)
+    {
+        Tweener.Instance.ScaleTo(t, Vector3.one, 0.3f, delay, TweenEasings.BounceEaseOut);
+        this.StartCoroutine(() => AudioManager.BaseSound(Vector3.zero), delay + 0.6f);
     }
 
     private void Hide()
     {
-        Tweener.Instance.ScaleTo(heading.transform, Vector3.zero, 0.2f, 0f, TweenEasings.QuadraticEaseIn);
-        Tweener.Instance.ScaleTo(home.transform, Vector3.zero, 0.2f, 0.1f, TweenEasings.QuadraticEaseIn);
-        Tweener.Instance.ScaleTo(vs.transform, Vector3.zero, 0.2f, 0.2f, TweenEasings.QuadraticEaseIn);
-        Tweener.Instance.ScaleTo(opponent.transform, Vector3.zero, 0.2f, 0.3f, TweenEasings.QuadraticEaseIn);
+        appearers.ForEach(a => a.HideWithDelay());
     }
 
     private static void HideAndRotate(Transform t)

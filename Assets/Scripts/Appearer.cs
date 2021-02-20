@@ -10,6 +10,7 @@ public class Appearer : MonoBehaviour
     public bool silent;
     public bool randomizeAngle;
     public float maxAngle = 5f;
+    public Transform soundPos;
 
     public TMP_Text text;
     private Vector3 size;
@@ -34,12 +35,18 @@ public class Appearer : MonoBehaviour
 	    
         if(!silent)
         {
-            // AudioManager.Instance.PlayEffectAt(16, Vector3.zero, 0.336f);
-            // AudioManager.Instance.PlayEffectAt(17, Vector3.zero, 0.329f);
+	        var p = soundPos ? soundPos.position : transform.position;
+	        DoSound();
         }
 
         gameObject.SetActive(true);
 		Tweener.Instance.ScaleTo(transform, size, 0.3f, 0f, TweenEasings.BounceEaseOut);
+    }
+
+    private void DoSound(float volume = 1f)
+    {
+	    var p = soundPos ? soundPos.position : transform.position;
+	    AudioManager.BaseSound(p, volume);
     }
 
     public void Hide()
@@ -48,8 +55,7 @@ public class Appearer : MonoBehaviour
 
         if(!silent)
         {
-            // AudioManager.Instance.PlayEffectAt(16, Vector3.zero, 0.336f);
-            // AudioManager.Instance.PlayEffectAt(17, Vector3.zero, 0.329f);
+	        DoSound(0.4f);
         }
 
 		Tweener.Instance.ScaleTo(transform, Vector3.zero, 0.2f, 0f, TweenEasings.QuadraticEaseOut);
@@ -72,5 +78,10 @@ public class Appearer : MonoBehaviour
             text.text = t;
 
         Invoke(nameof(Show), delay);
+    }
+
+    public void ShowAfter()
+    {
+	    Invoke(nameof(Show), hideDelay);
     }
 }

@@ -28,15 +28,21 @@ public class Ball : MonoBehaviour
     {
         var mag = other.relativeVelocity.magnitude;
         var dude = other.gameObject.GetComponentInParent<Dude>();
+        var p = other.contacts[0].point;
 
         if (dude && dude.direction > 0)
         {
             gameStats.AddToucher(dude);
         }
+
+        if (mag > 1f)
+        {
+            AudioManager.Instance.PlayEffectAt(0, p, Mathf.Clamp(mag * 0.3f, 0f, 10f));
+        }
         
         if ((other.gameObject.CompareTag("Ground") || other.gameObject.CompareTag("Net")) && mag > 7f)
         {
-            EffectManager.Instance.AddEffect(1, other.contacts[0].point);
+            EffectManager.Instance.AddEffect(1, p);
 
             if (mag > 5)
             {

@@ -998,6 +998,7 @@ GameObject:
   - component: {fileID: 160884528}
   - component: {fileID: 160884529}
   - component: {fileID: 160884530}
+  - component: {fileID: 160884531}
   m_Layer: 5
   m_Name: Opponent Team
   m_TagString: Untagged
@@ -1056,6 +1057,25 @@ MonoBehaviour:
   offset: 0
   noNegatives: 1
   direction: {x: 0, y: -10, z: 0}
+--- !u!114 &160884531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 160884527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66960746842b54c0f9ed680c321e963d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  appearAfter: -1
+  hideDelay: 0.8
+  silent: 0
+  randomizeAngle: 1
+  maxAngle: 5
+  soundPos: {fileID: 177794816}
+  text: {fileID: 0}
 --- !u!1 &177794814
 GameObject:
   m_ObjectHideFlags: 0
@@ -7968,6 +7988,7 @@ MonoBehaviour:
   silent: 0
   randomizeAngle: 0
   maxAngle: 5
+  soundPos: {fileID: 0}
   text: {fileID: 0}
 --- !u!1 &613874528
 GameObject:
@@ -8144,6 +8165,7 @@ GameObject:
   - component: {fileID: 638858808}
   - component: {fileID: 638858809}
   - component: {fileID: 638858810}
+  - component: {fileID: 638858811}
   m_Layer: 5
   m_Name: VS
   m_TagString: Untagged
@@ -8202,6 +8224,25 @@ MonoBehaviour:
   offset: 0
   noNegatives: 0
   direction: {x: 7, y: 0, z: 0}
+--- !u!114 &638858811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 638858807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66960746842b54c0f9ed680c321e963d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  appearAfter: -1
+  hideDelay: 0.6
+  silent: 0
+  randomizeAngle: 1
+  maxAngle: 5
+  soundPos: {fileID: 177794816}
+  text: {fileID: 0}
 --- !u!1 &643416974
 GameObject:
   m_ObjectHideFlags: 0
@@ -10538,6 +10579,7 @@ MonoBehaviour:
   silent: 0
   randomizeAngle: 0
   maxAngle: 5
+  soundPos: {fileID: 0}
   text: {fileID: 0}
 --- !u!1 &1024477268
 GameObject:
@@ -10702,7 +10744,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1046274530}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -10713,7 +10755,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -19.000013, y: 29}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1046274532
@@ -10733,6 +10775,7 @@ MonoBehaviour:
   silent: 0
   randomizeAngle: 1
   maxAngle: 5
+  soundPos: {fileID: 0}
   text: {fileID: 0}
 --- !u!114 &1046274533
 MonoBehaviour:
@@ -15770,6 +15813,7 @@ MonoBehaviour:
   silent: 0
   randomizeAngle: 0
   maxAngle: 5
+  soundPos: {fileID: 0}
   text: {fileID: 0}
 --- !u!1 &1140276444
 GameObject:
@@ -15782,6 +15826,7 @@ GameObject:
   - component: {fileID: 1140276445}
   - component: {fileID: 1140276446}
   - component: {fileID: 1140276447}
+  - component: {fileID: 1140276448}
   m_Layer: 5
   m_Name: Home Team
   m_TagString: Untagged
@@ -15840,6 +15885,25 @@ MonoBehaviour:
   offset: 0
   noNegatives: 1
   direction: {x: 0, y: 10, z: 0}
+--- !u!114 &1140276448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1140276444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66960746842b54c0f9ed680c321e963d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  appearAfter: -1
+  hideDelay: 0.4
+  silent: 0
+  randomizeAngle: 1
+  maxAngle: 5
+  soundPos: {fileID: 177794816}
+  text: {fileID: 0}
 --- !u!1 &1145838150
 GameObject:
   m_ObjectHideFlags: 0
@@ -18483,6 +18547,7 @@ GameObject:
   - component: {fileID: 1596863900}
   - component: {fileID: 1596863901}
   - component: {fileID: 1596863902}
+  - component: {fileID: 1596863903}
   m_Layer: 5
   m_Name: Match
   m_TagString: Untagged
@@ -18541,6 +18606,25 @@ MonoBehaviour:
   offset: 0
   noNegatives: 0
   direction: {x: -7, y: 0, z: 0}
+--- !u!114 &1596863903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1596863899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66960746842b54c0f9ed680c321e963d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  appearAfter: -1
+  hideDelay: 0.2
+  silent: 0
+  randomizeAngle: 1
+  maxAngle: 5
+  soundPos: {fileID: 177794816}
+  text: {fileID: 0}
 --- !u!4 &1614741410 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6409087943301853528, guid: 35acee41c43fe4603a20f91bac272c40, type: 3}
@@ -20622,6 +20706,11 @@ MonoBehaviour:
   vs: {fileID: 638858809}
   home: {fileID: 1140276446}
   opponent: {fileID: 160884529}
+  appearers:
+  - {fileID: 1596863903}
+  - {fileID: 638858811}
+  - {fileID: 1140276448}
+  - {fileID: 160884531}
 --- !u!1 &1883689875
 GameObject:
   m_ObjectHideFlags: 0
