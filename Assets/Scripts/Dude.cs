@@ -149,6 +149,7 @@ public class Dude : MonoBehaviour
         AudioManager.Instance.PlayEffectAt(22, position, 0.147f);
 
         AudioManager.Instance.PlayEffectAt(Random.Range(25, 32), face.transform.position, 3f);
+        face.OpenMouth(0.3f);
     }
 
     private void EnableJump()
@@ -176,6 +177,7 @@ public class Dude : MonoBehaviour
         body.AddForce(right * -150f * direction * force, ForceMode2D.Impulse);
         
         AudioManager.Instance.PlayEffectAt(Random.Range(25, 32), face.transform.position, 3f);
+        face.OpenMouth(0.3f);
     }
 
     private void AddGhost()

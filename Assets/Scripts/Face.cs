@@ -52,6 +52,9 @@ public class Face : MonoBehaviour {
 	public bool followMouse = false;
     public Camera cam;
 
+    public Transform openMouth;
+    private Vector3 openMouthSize;
+
 	// Use this for initialization
 	void Awake () {
 
@@ -80,7 +83,10 @@ public class Face : MonoBehaviour {
 
     private void Start()
     {
-        Invoke("Blink", blinkDelay * Random.Range(0.8f, 1.2f));
+	    openMouthSize = openMouth.localScale;
+	    openMouth.transform.localScale = Vector3.zero;
+	    
+        Invoke(nameof(Blink), blinkDelay * Random.Range(0.8f, 1.2f));
     }
 
     // Update is called once per frame
@@ -134,7 +140,18 @@ public class Face : MonoBehaviour {
 		}
 	}
 
-	public void RotateBrows(float left, float right) {
+    public void OpenMouth(float closeAfter)
+    {
+	    Tweener.Instance.ScaleTo(openMouth, openMouthSize, 0.1f, 0, TweenEasings.BounceEaseOut);
+	    Invoke(nameof(CloseMouth), closeAfter);
+    }
+
+    private void CloseMouth()
+    {
+		Tweener.Instance.ScaleTo(openMouth, Vector3.zero, 0.1f, 0, TweenEasings.QuadraticEaseOut);
+    }
+    
+    public void RotateBrows(float left, float right) {
 		if (brows.Length > 0) {
 			browsTargetAngle [1] = browsOriginalAngle [1] + left;
 			browsTargetAngle [0] = browsOriginalAngle [0] + right;

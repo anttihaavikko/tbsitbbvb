@@ -25,7 +25,6 @@ public class DudeAI : MonoBehaviour
     public void SetLevel(int level)
     {
         chance = level * (level / 100f) * 5f;
-        // Debug.Log("AI action chance is now: " + chance);
     }
 
     private void Update()
