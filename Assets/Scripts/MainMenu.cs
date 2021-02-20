@@ -61,7 +61,23 @@ public class MainMenu : MonoBehaviour
         // ReSharper disable once Unity.PerformanceCriticalCodeInvocation
         StartGame();
 
+        Controls();
         DebugControls();
+    }
+
+    private void Controls()
+    {
+        if (EscOnNonWeb())
+        {
+            Application.Quit();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Delete))
+        {
+            gameStats.Clear();
+            infos.Select(info => info.dude).ToList().ForEach(d => d.ClearSave());
+            SceneChanger.Instance.ChangeScene("Title");
+        }
     }
     
     private void DebugControls()
@@ -72,11 +88,6 @@ public class MainMenu : MonoBehaviour
         {
             gameStats.Clear();
             SceneChanger.Instance.ChangeScene("Title");
-        }
-
-        if (EscOnNonWeb())
-        {
-            Application.Quit();
         }
     }
 

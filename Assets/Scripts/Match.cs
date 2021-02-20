@@ -108,9 +108,18 @@ public class Match : MonoBehaviour
     private void Update()
     {
         matchTime += Time.deltaTime;
+        ShouldQuit();
         DebugControls();
         UpdateMirroring();
         LockMenus();
+    }
+
+    private void ShouldQuit()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            BackToMenu();
+        }
     }
 
     private void DebugControls()
@@ -136,11 +145,6 @@ public class Match : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.O))
         {
             OnEnd();
-        }
-
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            BackToMenu();
         }
     }
 
