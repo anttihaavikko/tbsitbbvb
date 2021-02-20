@@ -58,3 +58,9 @@ TagManager:
   - name: Bonus Control Mask
     uniqueID: 1178233673
     locked: 0
+  - name: Neck Outline Mask
+    uniqueID: 642079887
+    locked: 0
+  - name: Neck Mask
+    uniqueID: 2046634037
+    locked: 0
