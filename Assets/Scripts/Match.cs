@@ -85,6 +85,7 @@ public class Match : MonoBehaviour
             ShowInfo("YOU WON!");
             Invoke(nameof(OnEnd), 2f);
             gameStats.CompleteChallenge(0);
+            gameStats.CheckFive();
         }
         else
         {

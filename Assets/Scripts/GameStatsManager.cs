@@ -86,6 +86,14 @@ public class GameStatsManager : MonoBehaviour
         data.tutorialDone = true;
         Save();
     }
+
+    public void CheckFive()
+    {
+        if (data.wins == 5)
+        {
+            CompleteChallenge(12);
+        }
+    }
 }
 
 [System.Serializable]
@@ -118,11 +126,12 @@ public class Challenge
         "Win a 5+ min match",
         "Fault!", // 5
         "Hit a curve ball",
-        "Win without swinging",
         "Receive a special hit",
         "Win under two minutes",
-        "Win a flawless match", // 10
-        "Win solo"
+        "Win a flawless match",
+        "Win solo", // 10
+        "Win without swinging",
+        "Win 5 matches"
     };
     
     public int index;
