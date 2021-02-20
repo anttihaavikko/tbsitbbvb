@@ -11,8 +11,8 @@ public class AudioManager : ObjectPool<SoundEffect> {
 	private float musVolume = 0.5f;
 	public AudioClip[] effects;
 
-	public AudioLowPassFilter lowpass;
-	public AudioHighPassFilter highpass;
+	private AudioLowPassFilter lowpass;
+	private AudioHighPassFilter highpass;
 
 	// private AudioReverbFilter reverb;
 	// private AudioReverbPreset fromReverb, toReverb;
@@ -55,16 +55,22 @@ public class AudioManager : ObjectPool<SoundEffect> {
 	}
 
 	public void Lowpass(bool state = true) {
+		if (!lowpass) lowpass = Camera.main.GetComponent<AudioLowPassFilter>();
+
 		doingLowpass = state;
 		doingHighpass = false;
 	}
 
 	public void Highpass(bool state = true) {
+		if (!highpass) highpass = Camera.main.GetComponent<AudioHighPassFilter>();
 		doingHighpass = state;
 		doingLowpass = false;
 	}
 
-	public void ChangeMusic(int next, float fadeOutDur, float fadeInDur, float startDelay) {
+	private void ChangeMusic(int next, float fadeOutDur, float fadeInDur, float startDelay)
+	{
+		if (musics[next] == curMusic) return;
+		
 		fadeOutPos = 0f;
 		fadeInPos = -1f;
 
@@ -97,8 +103,21 @@ public class AudioManager : ObjectPool<SoundEffect> {
 		float changeSpeed = 0.075f;
 
 		curMusic.pitch = Mathf.MoveTowards (curMusic.pitch, targetPitch, 0.005f * changeSpeed);
-		lowpass.cutoffFrequency = Mathf.MoveTowards (lowpass.cutoffFrequency, targetLowpass, 750f * changeSpeed);
-		highpass.cutoffFrequency = Mathf.MoveTowards (highpass.cutoffFrequency, targetHighpass, 50f * changeSpeed);
+		if(lowpass) lowpass.cutoffFrequency = Mathf.MoveTowards (lowpass.cutoffFrequency, targetLowpass, 750f * changeSpeed);
+		if (highpass) highpass.cutoffFrequency = Mathf.MoveTowards (highpass.cutoffFrequency, targetHighpass, 50f * changeSpeed);
+		
+		if (fadeInPos < 1f) fadeInPos += Time.unscaledDeltaTime / fadeInDuration;
+
+		if (fadeOutPos < 1f) fadeOutPos += Time.unscaledDeltaTime / fadeOutDuration;
+
+		if (curMusic && fadeInPos >= 0f) curMusic.volume = Mathf.Lerp(0f, musVolume * 1.5f, fadeInPos);
+
+		if (prevMusic)
+		{
+			prevMusic.volume = Mathf.Lerp(musVolume, 0f, fadeOutPos);
+
+			if (prevMusic.volume <= 0f) prevMusic.Stop();
+		}
 	}
 
 	public void PlayEffectAt(AudioClip clip, Vector3 pos, float volume, bool pitchShift = true) {
@@ -123,5 +142,15 @@ public class AudioManager : ObjectPool<SoundEffect> {
 	public void ChangeMusicVolume(float vol) {
 		curMusic.volume = vol * 1.5f;
 		musVolume = vol * 1.5f;
+	}
+
+	public void ToMenu()
+	{
+		ChangeMusic(1, 0.2f, 0.2f, 0f);
+	}
+
+	public void ToMain()
+	{
+		ChangeMusic(0, 0.2f, 0.2f, 0f);
 	}
 }

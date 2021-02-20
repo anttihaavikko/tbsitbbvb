@@ -22,6 +22,8 @@ public class Match : MonoBehaviour
 
     private void Start()
     {
+        AudioManager.Instance.ToMain();
+        
         var count = dudes[0].GetLevel();
         dudes[2].AddBonuses(count);
         dudes[3].AddBonuses(count);
@@ -89,6 +91,7 @@ public class Match : MonoBehaviour
             gameStats.GetData().losses++;
             ShowInfo("YOU LOST!");
             Invoke(nameof(BackToMenu), 3f);
+            AudioManager.Instance.ToMenu();
         }
 
         gameStats.Save();
@@ -96,6 +99,7 @@ public class Match : MonoBehaviour
 
     private void OnEnd()
     {
+        AudioManager.Instance.ToMenu();
         bonusCam.SetActive(true);
         dudes.ForEach(d => d.ShowMenu());
     }
@@ -170,6 +174,7 @@ public class Match : MonoBehaviour
     
     private void BackToMenu()
     {
+        AudioManager.Instance.ToMenu();
         SceneChanger.Instance.ChangeScene("Menu");
     }
 

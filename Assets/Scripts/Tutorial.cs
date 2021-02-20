@@ -32,6 +32,7 @@ public class Tutorial : MonoBehaviour
 
     private void Start()
     {
+        AudioManager.Instance.ToMain();
         startCam.SetActive(false);
         splashTexts.ForEach(st => st.HideWithDelay());
         Invoke(nameof(ShowMoveHelps), 4.5f);
