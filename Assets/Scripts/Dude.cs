@@ -26,6 +26,7 @@ public class Dude : MonoBehaviour
     public Dude partner;
     public Transform armTrailer;
     public Match match;
+    public ParticleSystem sayingEffect;
 
     private Stats stats;
     private Vector2 startBodyPos, startArmPos;
@@ -184,6 +185,7 @@ public class Dude : MonoBehaviour
     {
         this.StartCoroutine(() =>
         {
+            sayingEffect.Emit(4);
             AudioManager.Instance.PlayEffectAt(Random.Range(32, 36), face.transform.position, 3f);
             face.OpenMouth(0.4f);
         }, delay);

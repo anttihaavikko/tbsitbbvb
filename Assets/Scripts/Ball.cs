@@ -192,6 +192,10 @@ public class Ball : MonoBehaviour
         {
             trail = body.gameObject.GetComponentInChildren<ParticleSystem>();    
         }
+
+        hitter = null;
+        lastHit = null;
+        lastHitNoReset = null;
         
         trail.Stop();
         
