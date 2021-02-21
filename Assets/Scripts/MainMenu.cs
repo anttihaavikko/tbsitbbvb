@@ -12,17 +12,22 @@ public class MainMenu : MonoBehaviour
     public GameStatsManager gameStats;
     public Transform challengeContainer;
     public ChallengeTile challengePrefab;
-    public Appearer todo;
+    public Appearer todo, boards;
     public ScoreManager scoreManager;
     public ScoreRow scoreRowPrefab;
     public Transform leaderboardsContainer;
+    public GameObject nextPage, prevPage;
 
     private bool starting;
     private bool canInteract;
     private int page;
+    private bool firstSeen, prevSeen;
 
     private void Start()
     {
+        nextPage.SetActive(false);
+        prevPage.SetActive(false);
+        
         scoreManager.LoadLeaderBoards(page);
         scoreManager.onLoaded += ScoresLoaded;
         
@@ -62,7 +67,13 @@ public class MainMenu : MonoBehaviour
     private void ScoresLoaded()
     {
         var data = scoreManager.GetData();
-        
+
+        for (var i = 0; i < leaderboardsContainer.childCount; i++)
+        {
+            var go = leaderboardsContainer.GetChild(i).gameObject;
+            Destroy(go);
+        }
+
         data.scores.ToList().ForEach(entry =>
         {
             var parts = entry.name.Split('-');
@@ -75,6 +86,19 @@ public class MainMenu : MonoBehaviour
             row.Setup(entry.position + ".", name1 + " & " + name2, details.wins + "-" + details.losses + sep + "<size=10>" + percentage + "% done</size>");
             FlagManager.SetFlag(row.flag, entry.locale);
         });
+
+        if (!scoreManager.endReached && !firstSeen)
+        {
+            nextPage.SetActive(true);
+            firstSeen = true;
+        }
+
+        this.StartCoroutine(() =>
+        {
+            Canvas.ForceUpdateCanvases();
+            leaderboardsContainer.gameObject.SetActive(false);
+            leaderboardsContainer.gameObject.SetActive(true);
+        }, 1/60f);
     }
 
     private void EnableStart()
@@ -100,6 +124,26 @@ public class MainMenu : MonoBehaviour
 
         Controls();
         DebugControls();
+        LeaderBoardPaging();
+    }
+
+    private void LeaderBoardPaging()
+    {
+        if ((Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D)) && !scoreManager.endReached)
+        {
+            page++;
+            scoreManager.LoadLeaderBoards(page);
+            nextPage.SetActive(false);
+            prevPage.SetActive(!prevSeen);
+        }
+        
+        if ((Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A)) && page > 0)
+        {
+            page--;
+            scoreManager.LoadLeaderBoards(page);
+            prevPage.SetActive(false);
+            prevSeen = true;
+        }
     }
 
     private void Controls()
@@ -137,6 +181,9 @@ public class MainMenu : MonoBehaviour
     {
         if (Input.GetKeyDown(infos[0].renameKey) || Input.GetKeyDown(infos[1].renameKey) || EscOnNonWeb()) return;
         if (!Input.anyKeyDown || starting || infos.Any(i => i.IsAsking())) return;
+        if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D) ||
+            Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A)) return;
+        
         starting = true;
         // ReSharper disable once Unity.PerformanceCriticalCodeInvocation
         var scene = gameStats.GetData().tutorialDone ? "Main" : "Tutorial";

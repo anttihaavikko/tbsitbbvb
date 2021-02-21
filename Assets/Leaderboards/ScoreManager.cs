@@ -28,7 +28,7 @@ public class LeaderBoardScore {
 public class ScoreManager : MonoBehaviour {
 
     public string gameName;
-    public int perPage = 10;
+    public int perPage = 5;
     public Action onUploaded, onLoaded;
 
     private string playerName = "";
@@ -119,14 +119,10 @@ public class ScoreManager : MonoBehaviour {
                     leaderBoardScoresString += data.scores[i].score + "\n";
 				}
 			}
-			
-			onLoaded?.Invoke();
-
-            if(playerName != "") {
-                FindPlayerRank();
-            }
 
 			endReached = data.scores.Length < perPage - 1;
+			
+			onLoaded?.Invoke();
 
 		} else {
 			leaderBoardString = www.error;

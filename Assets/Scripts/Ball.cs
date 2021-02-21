@@ -148,14 +148,17 @@ public class Ball : MonoBehaviour
         parent.position = body.position;
         t.localPosition = Vector3.zero;
 
-        if (homingAmount > 0f && SameSign(body.position.x, homingDirection))
-        {
-            body.AddForce(Vector2.down * (15f * homingAmount), ForceMode2D.Force);
-        }
-        
         if (homingAmount > 0f && body.velocity.magnitude < 5f)
         {
             ClearHoming();
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (homingAmount > 0f && SameSign(body.position.x, homingDirection))
+        {
+            body.AddForce(Vector2.down * (15f * homingAmount), ForceMode2D.Force);
         }
     }
 

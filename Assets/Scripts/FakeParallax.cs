@@ -8,7 +8,7 @@ public class FakeParallax : MonoBehaviour
     
     private Vector3 previousCamPos;
 
-    private void Start()
+    private void Awake()
     {
         previousCamPos = cam.position;
     }
