@@ -120,7 +120,7 @@ public class ScoreManager : MonoBehaviour {
 				}
 			}
 
-			endReached = data.scores.Length < perPage - 1;
+			endReached = data.scores.Length < perPage;
 			
 			onLoaded?.Invoke();
 
