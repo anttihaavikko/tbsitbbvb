@@ -76,7 +76,8 @@ public class MainMenu : MonoBehaviour
 
         data.scores.ToList().ForEach(entry =>
         {
-            var parts = entry.name.Split('-');
+            var firstName = entry.name.Split(',');
+            var parts = firstName[0].Split('-');
             var row = Instantiate(scoreRowPrefab, leaderboardsContainer);
             var name1 = "<color=#" + parts[2] + ">" + parts[0] + "</color>";
             var name2 = "<color=#" + parts[3] + ">" + parts[1] + "</color>";
