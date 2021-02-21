@@ -24,6 +24,7 @@ public class Ball : MonoBehaviour
     {
         superStars.Stop();
         trail = body.gameObject.GetComponentInChildren<ParticleSystem>();
+        SpawnEffect();
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -203,6 +204,16 @@ public class Ball : MonoBehaviour
         return hitter;
     }
 
+    private void SpawnEffect()
+    {
+        EffectManager.Instance.AddEffect(0, body.position);
+        EffectManager.Instance.AddEffect(2, body.position);
+        
+        AudioManager.Instance.PlayEffectAt(36, body.position, 2f);
+        AudioManager.Instance.PlayEffectAt(12, body.position, 0.784f);
+        AudioManager.Instance.PlayEffectAt(18, body.position, 1f);
+    }
+
     public void RespawnOn(Vector2 pos)
     {
         if (!trail)
@@ -222,6 +233,7 @@ public class Ball : MonoBehaviour
         
         EffectManager.Instance.AddEffect(0, body.position);
         EffectManager.Instance.AddEffect(2, body.position);
+
         cam.BaseEffect(0.3f);
         
         var t = body.transform;
@@ -230,6 +242,8 @@ public class Ball : MonoBehaviour
         body.position = pos;
         body.velocity = Vector2.zero;
         Invoke(nameof(ReactivateBallTrail), 0.2f);
+        
+        SpawnEffect();
     }
     
     private void ReactivateBallTrail()
