@@ -13,12 +13,14 @@ public class FakeParallax : MonoBehaviour
         previousCamPos = cam.position;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        var amt = (previousCamPos - cam.position) * -transform.position.z;
-        var nextPos = transform.position + new Vector3(amt.x * 1.5f, amt.y, 0);
-        transform.position = Vector3.Lerp(transform.position, nextPos, Time.deltaTime);
-        previousCamPos = cam.position;
+        var t = transform;
+        var p = t.position;
+        var camPos = cam.position;
+        var amt = (previousCamPos - camPos) * -p.z;
+        var nextPos = p + new Vector3(amt.x * 1.5f, amt.y, 0);
+        transform.position = Vector3.Lerp(p, nextPos, Time.deltaTime);
+        previousCamPos = camPos;
     }
 }
